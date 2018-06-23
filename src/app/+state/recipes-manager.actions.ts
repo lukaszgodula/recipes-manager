@@ -1,6 +1,6 @@
 export enum RecipesManagerActionTypes {
   RecipesManagerAction = '[RecipesManager] Action',
-  TestState = '[ReciPesManager] Test'
+  TestState = '[RecipesManager] Test'
 }
 
 export interface RecipesManager {

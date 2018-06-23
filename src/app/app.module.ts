@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { NxModule } from '@nrwl/nx';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { recipesManagerReducer } from 'src/app/+state/recipes-manager.reducer';
 
@@ -18,7 +17,6 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    NxModule.forRoot(),
     StoreModule.forRoot(
   { recipesManager: recipesManagerReducer },
   {
