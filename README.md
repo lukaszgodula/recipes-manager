@@ -1,5 +1,7 @@
 # RecipesManager
 
+[![Build Status](https://travis-ci.com/lukaszgodula/recipes-manager.svg?branch=master)](https://travis-ci.com/lukaszgodula/recipes-manager.svg?branch=master)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
