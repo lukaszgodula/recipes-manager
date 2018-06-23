@@ -1,11 +1,26 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { Action, Store } from '@ngrx/store';
+import { Subject } from 'rxjs/Subject';
+import { RecipesManagerState } from 'src/app/+state/recipes-manager.interfaces';
+import { mockStore } from 'src/mocks/mock-store';
+
 import { AppComponent } from './app.component';
+
 describe('AppComponent', () => {
+  const actions = new Subject<Action>();
+  const states = new Subject<RecipesManagerState>();
+  const store = mockStore<RecipesManagerState>({ actions, states });
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
+      providers: [
+        {
+          provide: Store,
+          useValue: store
+        }
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
