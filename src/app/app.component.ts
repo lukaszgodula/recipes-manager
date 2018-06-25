@@ -21,6 +21,6 @@ export class AppComponent implements OnInit {
       payload: {
         testStateNumber: 5
       }
-    })
+    });
   }
 }

@@ -9,7 +9,7 @@ export function mockStore<T>({
   states?: Subject<T>
 }): Store<T> {
 
-  let result = states as any;
+  const result = states as any;
   result.dispatch = (action: Action) => actions.next(action);
   return result;
 }

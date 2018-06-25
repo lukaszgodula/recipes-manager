@@ -8,10 +8,10 @@ export interface RecipesManager {
 }
 
 export interface TestState {
-  type: RecipesManagerActionTypes.TestState,
+  type: RecipesManagerActionTypes.TestState;
   payload: {
     testStateNumber: number;
-  }
+  };
 }
 
 export type RecipesManagerActions = RecipesManager | TestState;
