@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { RecipesManagerState } from 'src/app/+state/recipes-manager.interfaces';
+import { RecipesManagerActionTypes, TestState } from 'src/app/core/+state/recipes-manager.actions';
+import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 
-import { RecipesManagerActionTypes, TestState } from './+state/recipes-manager.actions';
 
 @Component({
   selector: 'app-root',

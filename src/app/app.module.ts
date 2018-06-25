@@ -4,11 +4,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
-import { recipesManagerReducer } from 'src/app/+state/recipes-manager.reducer';
+import { RecipesManagerEffects } from 'src/app/core/+state/recipes-manager.effects';
+import { initialState } from 'src/app/core/+state/recipes-manager.init';
+import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
 
 import { environment } from '../environments/environment';
-import { RecipesManagerEffects } from './+state/recipes-manager.effects';
-import { initialState as recipesManagerInitialState } from './+state/recipes-manager.init';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { AppComponent } from './app.component';
     StoreModule.forRoot(
   { recipesManager: recipesManagerReducer },
   {
-    initialState : { recipesManager : recipesManagerInitialState },
+    initialState : { recipesManager : initialState },
     metaReducers : !environment.production ? [storeFreeze] : []
   }
 ),

@@ -1,7 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
 import { Action, Store } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
-import { RecipesManagerState } from 'src/app/+state/recipes-manager.interfaces';
+import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { mockStore } from 'src/mocks/mock-store';
 
 import { AppComponent } from './app.component';

@@ -1,5 +1,5 @@
-import { initialState } from 'src/app/+state/recipes-manager.init';
-import { RecipesManagerState } from 'src/app/+state/recipes-manager.interfaces';
+import { initialState } from 'src/app/core/+state/recipes-manager.init';
+import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 
 import { RecipesManagerActions, RecipesManagerActionTypes } from './recipes-manager.actions';
 
