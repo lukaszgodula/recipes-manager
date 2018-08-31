@@ -1,17 +1,19 @@
+import { RecipesListItem } from 'src/app/core/models/recipes-list';
+
 export enum RecipesManagerActionTypes {
-  RecipesManagerAction = '[RecipesManager] Action',
-  TestState = '[RecipesManager] Test'
+  LoadRecipes = '[RecipesManager] LOAD_RECIPES',
+  RecipesLoaded = '[RecipesManager] RECIPES_LOADED'
 }
 
-export interface RecipesManager {
-  type: RecipesManagerActionTypes.RecipesManagerAction;
+export interface LoadRecipes {
+  type: RecipesManagerActionTypes.LoadRecipes;
 }
 
-export interface TestState {
-  type: RecipesManagerActionTypes.TestState;
+export interface RecipesLoaded {
+  type: RecipesManagerActionTypes.RecipesLoaded;
   payload: {
-    testStateNumber: number;
+    recipesList: RecipesListItem[];
   };
 }
 
-export type RecipesManagerActions = RecipesManager | TestState;
+export type RecipesManagerActions = LoadRecipes | RecipesLoaded;

@@ -6,7 +6,7 @@ import { RecipesManagerActions, RecipesManagerActionTypes } from './recipes-mana
 export function recipesManagerReducer(state = initialState, action: RecipesManagerActions): RecipesManagerState {
   switch (action.type) {
 
-    case RecipesManagerActionTypes.TestState:
+    case RecipesManagerActionTypes.RecipesLoaded:
       return { ...state, ...action.payload };
 
     default:

@@ -1,3 +1,5 @@
+import { RecipesListItem } from 'src/app/core/models/recipes-list';
+
 export interface RecipesManagerState {
-    readonly testStateNumber: number;
+    readonly recipesList: RecipesListItem[];
   }

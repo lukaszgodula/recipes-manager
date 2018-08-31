@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { RecipesManagerActionTypes, TestState } from 'src/app/core/+state/recipes-manager.actions';
+import { RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
+
+import { LoadRecipes } from './core/+state/recipes-manager.actions';
 
 
 @Component({
@@ -16,11 +18,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch<TestState>({
-      type: RecipesManagerActionTypes.TestState,
-      payload: {
-        testStateNumber: 5
-      }
+    this.store.dispatch<LoadRecipes>({
+      type: RecipesManagerActionTypes.LoadRecipes
     });
   }
 }
