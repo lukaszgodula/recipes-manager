@@ -7,7 +7,7 @@ export function recipesManagerReducer(state = initialState, action: RecipesManag
   switch (action.type) {
 
     case RecipesManagerActionTypes.RecipesLoaded:
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload};
 
     default:
       return state;

@@ -1,15 +1,31 @@
-import { Action, Store } from '@ngrx/store';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs';
 
-export function mockStore<T>({
-  actions = new Subject<Action>(),
-  states = new Subject<T>()
-}: {
-  actions?: Subject<Action>,
-  states?: Subject<T>
-}): Store<T> {
+export class MockStore<T> {
 
-  const result = states as any;
-  result.dispatch = (action: Action) => actions.next(action);
-  return result;
+  reducers = new Map<string, BehaviorSubject<any>>();
+
+  /**
+   * simple solution to support selecting/subscribing to this mockstore as usual.
+   * @param name reducer name
+   * @returns {undefined|BehaviorSubject<any>}
+   */
+  select(name) {
+    if (!this.reducers.has(name)) {
+      this.reducers.set(name, new BehaviorSubject({}));
+    }
+    return this.reducers.get(name);
+  }
+
+  /**
+   * used to set a fake state
+   * @param reducerName name of your reducer
+   * @param data the mockstate you want to have
+   */
+  mockState(reducerName, data) {
+    this.select(reducerName).next(data);
+  }
+
+  dispatch(data: any) {
+    // spy me
+  }
 }
