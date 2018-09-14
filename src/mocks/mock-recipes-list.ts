@@ -10,5 +10,12 @@ export const mockRecipesList: RecipesListItem[] =
     cuisine: CuisineType.Polish,
     time: 90,
     level: DifficultyLevel.Easy
+  },
+  {
+    id: 2,
+    name: 'Spaghetti Carbonara',
+    cuisine: CuisineType.Italian,
+    time: 30,
+    level: DifficultyLevel.Easy
   }
 ];

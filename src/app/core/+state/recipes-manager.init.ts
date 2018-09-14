@@ -1,4 +1,4 @@
-import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
+import { RecipesManagerState } from './recipes-manager.interfaces';
 
 export const initialState: RecipesManagerState = {
     recipesList: []

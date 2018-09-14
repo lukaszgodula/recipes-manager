@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -11,6 +12,7 @@ import { CoreModule } from 'src/app/core/core.module';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { RecipesListModule } from './recipes-list/recipes-list.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AppComponent } from './app.component';
 ),
     EffectsModule.forRoot([RecipesManagerEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    CoreModule
+    CoreModule,
+    BrowserAnimationsModule,
+    RecipesListModule
   ],
   providers: [RecipesManagerEffects],
   bootstrap: [AppComponent]

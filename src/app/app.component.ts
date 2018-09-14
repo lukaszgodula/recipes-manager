@@ -12,7 +12,6 @@ import { LoadRecipes } from './core/+state/recipes-manager.actions';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
 
   constructor(private store: Store<RecipesManagerState>) {
   }
