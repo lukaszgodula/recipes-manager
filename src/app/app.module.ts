@@ -11,6 +11,7 @@ import { CoreModule } from 'src/app/core/core.module';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AppComponent } from './app.component';
 ),
     EffectsModule.forRoot([RecipesManagerEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    CoreModule
+    CoreModule,
+    BrowserAnimationsModule
   ],
   providers: [RecipesManagerEffects],
   bootstrap: [AppComponent]
