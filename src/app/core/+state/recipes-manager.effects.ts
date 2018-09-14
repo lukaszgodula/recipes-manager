@@ -20,7 +20,7 @@ export class RecipesManagerEffects {
           return [
             {
               type: RecipesManagerActionTypes.RecipesLoaded,
-              payload: recipesList
+              payload: { recipesList: recipesList }
             }
           ];
         })
@@ -29,5 +29,5 @@ export class RecipesManagerEffects {
   );
 
   constructor(private actions$: Actions,
-              private recipesRepository: RecipesRepository) { }
+    private recipesRepository: RecipesRepository) { }
 }
