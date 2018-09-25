@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --build-optimizer --vendor-chunk",
+    "build": "ng build --prod --build-optimizer --vendor-chunk --named-chunks --output-hashing none",
     "test": "ng test --watch false",
     "lint": "ng lint",
     "e2e": "ng e2e"
