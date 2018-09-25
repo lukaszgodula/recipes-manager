@@ -11,6 +11,7 @@ import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reduc
 import { CoreModule } from 'src/app/core/core.module';
 
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesListModule } from './recipes-list/recipes-list.module';
 
@@ -20,6 +21,7 @@ import { RecipesListModule } from './recipes-list/recipes-list.module';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     StoreModule.forRoot(
   { recipesManager: recipesManagerReducer },
   {
