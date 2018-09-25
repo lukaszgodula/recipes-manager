@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/publishreplay';
+import 'rxjs/add/operator/publishReplay';
 
 import { Store } from '@ngrx/store';
 import { MemoizedSelector } from '@ngrx/store/src/selector';
