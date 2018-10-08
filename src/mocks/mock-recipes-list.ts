@@ -16,6 +16,6 @@ export const mockRecipesList: RecipesListItem[] =
     name: 'Spaghetti Carbonara',
     cuisine: CuisineType.Italian,
     time: 30,
-    level: DifficultyLevel.Easy
+    level: DifficultyLevel.Medium
   }
 ];
