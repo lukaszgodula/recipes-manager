@@ -10,6 +10,8 @@ export function recipesManagerReducer(state: RecipesManagerState, action: Recipe
       return { ...state, ...action.payload };
     case RecipesManagerActionTypes.ClearRecipeDetails:
       return { ...state, recipeDetails: null };
+    case RecipesManagerActionTypes.ClearRecipesList:
+      return { ...state, recipesList: null };
     default:
       return state;
   }

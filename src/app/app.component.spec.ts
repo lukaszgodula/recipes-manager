@@ -1,26 +1,18 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
-import { Action, Store } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
-import { MockStore } from 'src/mocks/mock-store';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   const actions = new Subject<Action>();
   const states = new Subject<RecipesManagerState>();
-  // const store = mockStore<RecipesManagerState>({ actions, states });
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
-      ],
-      providers: [
-        {
-          provide: Store,
-          useClass: MockStore
-        }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
