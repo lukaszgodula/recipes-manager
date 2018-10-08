@@ -12,6 +12,10 @@ const appRoutes: Routes = [
     path: 'recipe/:id',
     loadChildren: './recipe-details/recipe-details.module#RecipeDetailsModule'
   },
+  {
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule'
+  },
   // { path: 'not-found', component: PageNotFoundComponent },
   // { path: '**', redirectTo: '/not-found' },
 ];
