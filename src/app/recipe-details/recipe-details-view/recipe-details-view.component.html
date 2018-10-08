@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button
+          (click)="onGoBackClicled()">
+    <mat-icon aria-label="Go back">arrow_back</mat-icon>
+  </button>
+  <span>Details: {{recipeName}}</span>
+</mat-toolbar>
+
+<mat-grid-list cols="3"
+               rowHeight="3em">
+  <mat-grid-tile colspan="3"
+                 rowspan="4">
+    <img src="{{recipeImageUrl}}">
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3"
+                 rowspan="1">
+    <h1>{{recipeName}}</h1>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1"
+                 rowspan="1">
+    <span>Difficulty: {{recipeDifficultyLevel}}</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1"
+                 rowspan="1">
+    <span>Time: {{recipeTime}}</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1"
+                 rowspan="1">
+    <span>Vege: {{isVege ? 'Yes' : 'No'}}</span>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2"
+                 rowspan="{{recipeIngredients.length + 2}}"
+                 class="ingredients">
+    <mat-list>
+      <h2>Ingredients:</h2>
+      <mat-list-item *ngFor="let ingredient of recipeIngredients">{{ingredient.name}} {{ ingredient.quantity}}
+        {{ingredient.unit}}</mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3"
+                 rowspan="2">
+    <span class="recipe-description">
+      {{recipeDescription}}
+    </span>
+  </mat-grid-tile>
+</mat-grid-list>

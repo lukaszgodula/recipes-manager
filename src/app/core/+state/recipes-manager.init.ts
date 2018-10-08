@@ -1,5 +1,7 @@
 import { RecipesManagerState } from './recipes-manager.interfaces';
 
 export const initialState: RecipesManagerState = {
-    recipesList: []
+    isAppLoading: false,
+    recipesList: [],
+    recipeDetails: null
 };

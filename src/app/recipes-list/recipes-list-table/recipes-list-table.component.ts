@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
 
 @Component({
@@ -9,11 +9,14 @@ import { RecipesListItem } from 'src/app/core/models/recipes-list';
 })
 export class RecipesListTableComponent implements OnInit {
   @Input() recipesListItems: RecipesListItem[];
+  @Output() navigateToDetails: EventEmitter<number> = new EventEmitter();
   public displayedColumns: string[] = ['name', 'cuisine', 'level'];
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  public onRowClicked(rowData: RecipesListItem): void {
+    this.navigateToDetails.emit(rowData.id);
+  }
 }

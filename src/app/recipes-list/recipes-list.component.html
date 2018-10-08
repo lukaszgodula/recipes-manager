@@ -1,3 +1,4 @@
 <recipes-list-table
-  [recipesListItems]="recipesListItems | async">
+  [recipesListItems]="recipesListItems | async"
+  (navigateToDetails)="navigateToDetails($event)">
 </recipes-list-table>
