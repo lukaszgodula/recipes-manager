@@ -1,3 +1,8 @@
-<p>
-  recipe-details works!
-</p>
+<recipe-details-view [recipeName]="recipeName | async"
+                     [recipeImageUrl]="recipeImageUrl | async"
+                     [recipeDifficultyLevel]="recipeDifficultyLevel | async"
+                     [recipeTime]="recipeTime | async"
+                     [isVege]="isVege | async"
+                     [recipeIngredients]="recipeIngredients | async"
+                     [recipeDescription]="recipeDescription | async"
+                     (goBackClicked)="goBack()"></recipe-details-view>

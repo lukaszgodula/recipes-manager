@@ -35,21 +35,7 @@ export const recipes: Recipe[] = [
         id: 2,
         userId: 1,
         name: 'Spaghetti Carbonara',
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Cras congue quis tellus eget varius. Nam ut condimentum libero.
-        Praesent quis orci eu nunc convallis condimentum sit amet non tellus.
-        Integer quam massa, imperdiet eget justo eu, malesuada ultrices ex.
-        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-        Fusce volutpat erat est, sit amet bibendum nisi fringilla eleifend. Cras ex magna, mattis eget mattis ac, vehicula ut est.
-        Phasellus tempor augue a augue hendrerit aliquet. Pellentesque quis feugiat dolor. Nullam et erat nec justo tristique aliquet.
-
-        Vestibulum suscipit tincidunt elit, nec tristique neque pulvinar eget.Etiam ante enim, facilisis a orci at,
-        ultrices posuere ex.Mauris eu eleifend mauris, quis maximus sapien.In hac habitasse platea dictumst
-        Praesent eu neque sit amet tortor mollis consequat.Cras velit eros, ultricies gravida magna in, volutpat lobortis elit.
-        Phasellus vel fringilla ante, vitae molestie nibh.Quisque faucibus molestie iaculis.Donec vitae nulla arcu.
-        Morbi venenatis convallis nulla, quis ultricies felis ullamcorper sit amet.Suspendisse egestas varius feugiat.
-        Cras varius imperdiet dolor ut tempus.Nam sit amet erat vel dui cursus cursus eget sed magna.
-        Sed molestie augue ac arcu varius gravida.Maecenas at efficitur risus.Sed malesuada ante eu sapien sollicitudin luctus.`,
+        description: `Dodać i zmieszać.`,
         imageUrl: 'https://www.opowiastka.com/wp-content/uploads/2018/05/carbonara.jpeg',
         ingredientsList: [
             {
