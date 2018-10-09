@@ -24,8 +24,12 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  public logOut(): Promise<void> {
-    return this.afAuth.auth.signOut();
+  public logOut(): void {
+    this.afAuth.auth.signOut()
+      .then((res) => {
+        this.updateUserState(null);
+      })
+      .catch(err => console.log(err));
   }
 
   public observeLoginStatus(): void {
@@ -40,10 +44,10 @@ export class AuthService {
     });
   }
 
-  private updateUserState(u: User) {
+  private updateUserState(u: User): void {
     const recipesManagerUser: RecipesManagerUser = {
-      email: u.email,
-      uid: u.uid,
+      email: u && u.email ? u.email : null,
+      uid: u && u.uid ? u.uid : null
     };
     this.store.dispatch<ChangeLoginStatus>({
       type: RecipesManagerActionTypes.ChangeLoginStatus,

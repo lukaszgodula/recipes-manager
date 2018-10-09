@@ -12,6 +12,7 @@ import { RecipesManagerEffects } from 'src/app/core/+state/recipes-manager.effec
 import { initialState } from 'src/app/core/+state/recipes-manager.init';
 import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
 import { CoreModule } from 'src/app/core/core.module';
+import { NavBarModule } from 'src/app/nav-bar/nav-bar.module';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +42,8 @@ import { RecipesListModule } from './recipes-list/recipes-list.module';
     CoreModule,
     BrowserAnimationsModule,
     RecipesListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NavBarModule
   ],
   providers: [RecipesManagerEffects],
   bootstrap: [AppComponent]
