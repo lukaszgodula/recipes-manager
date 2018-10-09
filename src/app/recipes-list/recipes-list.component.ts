@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { ClearRecipesList, LoadRecipes, RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { FromRecipesManagerState } from 'src/app/core/+state/recipes-manager.selectors';
@@ -15,16 +16,22 @@ import { StoreUtil } from 'src/app/core/utils/store.util';
 })
 export class RecipesListComponent implements OnInit, OnDestroy {
   public recipesListItems: Observable<RecipesListItem[]>;
+  public isUserLoggedIn: Observable<boolean>;
 
   constructor(private store: Store<RecipesManagerState>,
     private router: Router) {
     this.recipesListItems = StoreUtil.select(this.store, FromRecipesManagerState.recipesList);
+    this.isUserLoggedIn = StoreUtil.select(this.store, FromRecipesManagerState.isUserLoggedIn);
   }
 
   ngOnInit() {
-    this.store.dispatch<LoadRecipes>({
-      type: RecipesManagerActionTypes.LoadRecipes
-    });
+    this.isUserLoggedIn
+      .pipe(filter(v => v !== false))
+      .subscribe((v) => {
+        this.store.dispatch<LoadRecipes>({
+          type: RecipesManagerActionTypes.LoadRecipes
+        });
+      });
   }
 
   ngOnDestroy() {

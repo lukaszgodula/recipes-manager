@@ -1,5 +1,6 @@
 import { Recipe } from 'src/app/core/models/recipe';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
+import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
 
 export enum RecipesManagerActionTypes {
   LoadRecipes = '[RecipesManager] LOAD_RECIPES',
@@ -7,7 +8,9 @@ export enum RecipesManagerActionTypes {
   LoadRecipeDetails = '[RecipesManager] LOAD_RECIPE_DETAILS',
   RecipeDetailsLoaded = '[RecipesManager] RECIPE_DETAILS_LOADED',
   ClearRecipeDetails = '[RecipesManager] CLEAR_RECIPE_DETAILS',
-  ClearRecipesList = '[RecipesManager] CLEAR_RECIPES_LIST'
+  ClearRecipesList = '[RecipesManager] CLEAR_RECIPES_LIST',
+  ChangeLoginStatus = '[RecipesManager] CHANGE_LOGIN_STATUS',
+  SetAppLoadingFlag = '[RecipesManager] SET_APP_LOADING_FLAG'
 }
 
 export interface LoadRecipes {
@@ -35,6 +38,20 @@ export interface RecipeDetailsLoaded {
   };
 }
 
+export interface ChangeLoginStatus {
+  type: RecipesManagerActionTypes.ChangeLoginStatus;
+  payload: {
+    user: RecipesManagerUser;
+  };
+}
+
+export interface SetAppLoadingFlag {
+  type: RecipesManagerActionTypes.SetAppLoadingFlag;
+  payload: {
+    isAppLoading: boolean;
+  };
+}
+
 export interface ClearRecipeDetails {
   type: RecipesManagerActionTypes.ClearRecipeDetails;
 }
@@ -49,4 +66,6 @@ export type RecipesManagerActions =
   LoadRecipeDetails |
   RecipeDetailsLoaded |
   ClearRecipeDetails |
-  ClearRecipesList;
+  ClearRecipesList |
+  ChangeLoginStatus |
+  SetAppLoadingFlag;
