@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { UserInputLoginData } from 'src/app/core/models/user-input-login-data';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -9,19 +9,16 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService,
-    private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() { }
 
-  public login() {
-    this.authService.signInWithEmail('lukaszgodula@gmail.com', '123456')
-      .then((res) => {
-        this.router.navigate(['../']);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  public logIn(event: UserInputLoginData) {
+    this.authService.signInWithEmail(event);
+  }
+
+  public signUp(event: UserInputLoginData) {
+    this.authService.signUpWithEmail(event);
   }
 
   public logOut() {

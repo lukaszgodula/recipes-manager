@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { ChangeLoginStatus, RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
+import { UserInputLoginData } from 'src/app/core/models/user-input-login-data';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
 
 @Injectable()
@@ -20,8 +21,22 @@ export class AuthService {
     this.user = afAuth.user;
   }
 
-  public signInWithEmail(email: string, password: string): Promise<firebase.auth.UserCredential> {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  public signUpWithEmail(signUpData: UserInputLoginData): void {
+    this.afAuth.auth.createUserWithEmailAndPassword(signUpData.username, signUpData.password)
+      .then((res) => {
+        this.router.navigate(['../']);
+      })
+      .catch(err => { console.log(err); });
+  }
+
+  public signInWithEmail(loginData: UserInputLoginData): void {
+    this.afAuth.auth.signInWithEmailAndPassword(loginData.username, loginData.password)
+      .then((res) => {
+        this.router.navigate(['../']);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   public logOut(): void {

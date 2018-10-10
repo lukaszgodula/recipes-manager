@@ -1,2 +1,6 @@
-<button (click)="login()">LogIn</button>
-<button (click)="logOut()">LogOut</button>
+<div class="login-component-wrapper">
+    <div class="login-form-element">
+        <login-form (loginClicked)="logIn($event)"
+                    (signUpClicked)="signUp($event)"></login-form>
+    </div>
+</div>
