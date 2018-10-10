@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { ClearRecipesList, LoadRecipes, RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { FromRecipesManagerState } from 'src/app/core/+state/recipes-manager.selectors';
@@ -17,6 +17,7 @@ import { StoreUtil } from 'src/app/core/utils/store.util';
 export class RecipesListComponent implements OnInit, OnDestroy {
   public recipesListItems: Observable<RecipesListItem[]>;
   public isUserLoggedIn: Observable<boolean>;
+  private unsubscribe: Subject<void> = new Subject();
 
   constructor(private store: Store<RecipesManagerState>,
     private router: Router) {
@@ -26,7 +27,7 @@ export class RecipesListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isUserLoggedIn
-      .pipe(filter(v => v !== false))
+      .pipe(filter(v => v !== false), takeUntil(this.unsubscribe))
       .subscribe((v) => {
         this.store.dispatch<LoadRecipes>({
           type: RecipesManagerActionTypes.LoadRecipes
@@ -38,6 +39,8 @@ export class RecipesListComponent implements OnInit, OnDestroy {
     this.store.dispatch<ClearRecipesList>({
       type: RecipesManagerActionTypes.ClearRecipesList
     });
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   public navigateToDetails(recipeId: number): void {
