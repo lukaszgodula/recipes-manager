@@ -10,6 +10,8 @@ import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
 import { UserInputLoginData } from 'src/app/core/models/user-input-login-data';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
 
+import { FirebaseAuthError } from '../models/firebase-auth-error';
+
 @Injectable()
 export class AuthService {
   public user: Observable<firebase.User>;
@@ -26,7 +28,7 @@ export class AuthService {
       .then((res) => {
         this.router.navigate(['../']);
       })
-      .catch(err => { console.log(err); });
+      .catch(err => { this.recipesManagerService.throwAuthError(err); });
   }
 
   public signInWithEmail(loginData: UserInputLoginData): void {
@@ -34,8 +36,8 @@ export class AuthService {
       .then((res) => {
         this.router.navigate(['../']);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((err: FirebaseAuthError) => {
+        this.recipesManagerService.throwAuthError(err);
       });
   }
 
@@ -44,7 +46,7 @@ export class AuthService {
       .then((res) => {
         this.updateUserState(null);
       })
-      .catch(err => console.log(err));
+      .catch(err => this.recipesManagerService.throwAuthError(err));
   }
 
   public observeLoginStatus(): void {

@@ -10,7 +10,23 @@ export enum RecipesManagerActionTypes {
   ClearRecipeDetails = '[RecipesManager] CLEAR_RECIPE_DETAILS',
   ClearRecipesList = '[RecipesManager] CLEAR_RECIPES_LIST',
   ChangeLoginStatus = '[RecipesManager] CHANGE_LOGIN_STATUS',
-  SetAppLoadingFlag = '[RecipesManager] SET_APP_LOADING_FLAG'
+  SetAppLoadingFlag = '[RecipesManager] SET_APP_LOADING_FLAG',
+  ThrowAuthError = '[RecipesManager] THROW_AUTH_ERROR',
+  SetAuthProgress = '[RecipesManager] SET_AUTH_PROGRESS'
+}
+
+export interface SetAuthProgress {
+  type: RecipesManagerActionTypes.SetAuthProgress;
+  payload: {
+    authInProgress: boolean;
+  };
+}
+
+export interface ThrowAuthError {
+  type: RecipesManagerActionTypes.ThrowAuthError;
+  payload: {
+    errorMessage: string;
+  };
 }
 
 export interface LoadRecipes {
@@ -68,4 +84,6 @@ export type RecipesManagerActions =
   ClearRecipeDetails |
   ClearRecipesList |
   ChangeLoginStatus |
-  SetAppLoadingFlag;
+  SetAppLoadingFlag |
+  ThrowAuthError |
+  SetAuthProgress;

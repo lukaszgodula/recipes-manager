@@ -4,6 +4,7 @@ import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
 
 export interface RecipesManagerState {
   readonly isAppLoading: boolean;
+  readonly authInProgress: boolean;
   readonly user: RecipesManagerUser;
   readonly recipesList: RecipesListItem[];
   readonly recipeDetails: Recipe;

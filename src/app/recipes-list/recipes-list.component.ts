@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { ClearRecipesList, LoadRecipes, RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
@@ -9,25 +9,27 @@ import { FromRecipesManagerState } from 'src/app/core/+state/recipes-manager.sel
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
 import { StoreUtil } from 'src/app/core/utils/store.util';
 
+import { UnsubscribingOnDestroy } from '../core/utils/unsubscribing-on-destroy';
+
 @Component({
   selector: 'recipes-list',
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss']
 })
-export class RecipesListComponent implements OnInit, OnDestroy {
+export class RecipesListComponent extends UnsubscribingOnDestroy implements OnInit, OnDestroy {
   public recipesListItems: Observable<RecipesListItem[]>;
   public isUserLoggedIn: Observable<boolean>;
-  private unsubscribe: Subject<void> = new Subject();
 
   constructor(private store: Store<RecipesManagerState>,
     private router: Router) {
+    super();
     this.recipesListItems = StoreUtil.select(this.store, FromRecipesManagerState.recipesList);
     this.isUserLoggedIn = StoreUtil.select(this.store, FromRecipesManagerState.isUserLoggedIn);
   }
 
   ngOnInit() {
     this.isUserLoggedIn
-      .pipe(filter(v => v !== false), takeUntil(this.unsubscribe))
+      .pipe(filter(v => v !== false), takeUntil(this.ngUnsubscribe))
       .subscribe((v) => {
         this.store.dispatch<LoadRecipes>({
           type: RecipesManagerActionTypes.LoadRecipes
@@ -39,8 +41,7 @@ export class RecipesListComponent implements OnInit, OnDestroy {
     this.store.dispatch<ClearRecipesList>({
       type: RecipesManagerActionTypes.ClearRecipesList
     });
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    super.ngOnDestroy();
   }
 
   public navigateToDetails(recipeId: number): void {

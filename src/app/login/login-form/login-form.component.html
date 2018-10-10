@@ -11,6 +11,7 @@
                placeholder="Username"
                [(ngModel)]="username"
                name="username"
+               email
                required>
       </mat-form-field>
       <mat-form-field class="input-full-width">
@@ -26,14 +27,14 @@
   <mat-card-actions>
     <button mat-raised-button
             (click)="onLoginClicked()"
-            [disabled]="loginInProgress"
+            [disabled]="authInProgress"
             color="primary">Login</button>
     <button mat-raised-button
             (click)="onSignUpClicked()"
-            [disabled]="loginInProgress">Sign up</button>
+            [disabled]="authInProgress">Sign up</button>
     <mat-spinner strokeWidth="3"
                  diameter="25"
                  class="loading-spinner"
-                 *ngIf="loginInProgress"></mat-spinner>
+                 *ngIf="authInProgress"></mat-spinner>
   </mat-card-actions>
 </mat-card>
