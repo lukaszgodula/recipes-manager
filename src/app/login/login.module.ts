@@ -20,7 +20,6 @@ import { LoginComponent } from './login.component';
     MatButtonModule,
     MatProgressSpinnerModule
   ],
-  declarations: [LoginComponent, LoginFormComponent],
-  exports: [LoginComponent]
+  declarations: [LoginComponent, LoginFormComponent]
 })
 export class LoginModule { }

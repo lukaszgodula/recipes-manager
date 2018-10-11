@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { User } from 'firebase';
-import { Observable } from 'rxjs';
 import { ChangeLoginStatus, RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
@@ -14,13 +13,11 @@ import { FirebaseAuthError } from '../models/firebase-auth-error';
 
 @Injectable()
 export class AuthService {
-  public user: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth,
     private router: Router,
     private store: Store<RecipesManagerState>,
     private recipesManagerService: RecipesManagerService) {
-    this.user = afAuth.user;
   }
 
   public signUpWithEmail(signUpData: UserInputLoginData): void {
@@ -50,7 +47,7 @@ export class AuthService {
   }
 
   public observeLoginStatus(): void {
-    this.user.subscribe((u: User) => {
+    this.afAuth.authState.subscribe((u: User) => {
       this.recipesManagerService.setAppLoadingFlag(true);
       if (u) {
         this.updateUserState(u);
@@ -69,7 +66,7 @@ export class AuthService {
     this.store.dispatch<ChangeLoginStatus>({
       type: RecipesManagerActionTypes.ChangeLoginStatus,
       payload: {
-        user: recipesManagerUser
+        user: u ? recipesManagerUser : null
       }
     });
   }

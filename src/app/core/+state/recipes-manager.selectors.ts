@@ -12,7 +12,7 @@ export class FromRecipesManagerState {
         return state && state.authInProgress ? state.authInProgress : false;
     });
     public static readonly isUserLoggedIn = createSelector(FromRecipesManagerState.self, state => {
-        return state && state.user && state.user.email ? true : false;
+        return state && state.user ? true : false;
     });
     public static readonly isAppLoading = createSelector(FromRecipesManagerState.self, state => {
         return state && state.isAppLoading ? state.isAppLoading : state.isAppLoading;
