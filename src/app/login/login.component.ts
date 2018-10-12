@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { StoreUtil } from 'src/app/core/utils/store.util';
 
 @Component({
-  selector: 'login',
+  selector: 'login-component',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
