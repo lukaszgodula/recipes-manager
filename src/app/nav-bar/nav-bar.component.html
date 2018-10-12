@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button
+          (click)="goBack()"
+          *ngIf="(!isInRoot) && (isLoggedIn | async)">
+    <mat-icon aria-label="Go back">arrow_back</mat-icon>
+  </button>
+  <span>Recipes Manager</span>
+  <button mat-icon-button
+          class="logout-button"
+          (click)="logOut()"
+          *ngIf="isLoggedIn | async">
+    <mat-icon aria-label="Go back">exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>

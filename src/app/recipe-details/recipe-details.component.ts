@@ -56,8 +56,4 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  public goBack(): void {
-    this.router.navigate(['../']);
-  }
-
 }

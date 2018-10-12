@@ -23,10 +23,12 @@ before_install:
 
 before_script:
   - yarn global add firebase-tools
+  - yarn global add replace-in-file
   - yarn
 
 script:
   - yarn run lint
+  - yarn run replace ApiKey $FIERBASE_AUTH_API_KEY src/environments/environment.prod.ts
   - yarn run test
   - yarn run build
 

@@ -1,0 +1,7 @@
+<div class="login-component-wrapper">
+    <div class="login-form-element">
+        <login-form [authInProgress]="authInProgress | async"
+                    (loginClicked)="logIn($event)"
+                    (signUpClicked)="signUp($event)"></login-form>
+    </div>
+</div>

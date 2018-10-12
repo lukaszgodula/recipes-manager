@@ -3,6 +3,7 @@ import { async, TestBed } from '@angular/core/testing';
 import { Action } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 import { AppComponent } from './app.component';
 
@@ -13,6 +14,9 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
+      ],
+      providers: [
+        { provide: AuthService, useValue: () => { } }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

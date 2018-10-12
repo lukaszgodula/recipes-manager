@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { DifficultyLevel } from 'src/app/core/enums/difficulty-level.enum';
 import { Ingredient } from 'src/app/core/models/ingredient';
 
@@ -16,15 +16,11 @@ export class RecipeDetailsViewComponent implements OnInit {
   @Input() isVege: boolean;
   @Input() recipeIngredients: Ingredient[];
   @Input() recipeDescription: string;
-  @Output() goBackClicked: EventEmitter<null> = new EventEmitter(null);
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  public onGoBackClicled(): void {
-    this.goBackClicked.emit();
-  }
 
 }

@@ -7,14 +7,17 @@
     "build": "ng build --prod --build-optimizer --vendor-chunk --named-chunks --output-hashing none",
     "test": "ng test --watch false",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "replace": "replace-in-file"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.1.7",
+    "@angular/cdk": "^6.2.0",
     "@angular/common": "^6.1.7",
     "@angular/compiler": "^6.1.7",
     "@angular/core": "^6.1.7",
+    "@angular/fire": "^5.0.2",
     "@angular/forms": "^6.1.7",
     "@angular/http": "^6.1.7",
     "@angular/material": "^6.4.7",
@@ -27,11 +30,11 @@
     "@ngrx/store": "^6.1.0",
     "@ngrx/store-devtools": "^6.1.0",
     "core-js": "^2.5.7",
+    "firebase": "^5.5.3",
     "ngrx-store-freeze": "0.2.4",
     "rxjs": "^6.3.2",
     "rxjs-compat": "^6.3.2",
-    "zone.js": "^0.8.26",
-    "@angular/cdk": "^6.2.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.1",

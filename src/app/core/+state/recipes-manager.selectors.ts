@@ -5,6 +5,18 @@ import { RecipesManagerState } from './recipes-manager.interfaces';
 export class FromRecipesManagerState {
     public static readonly self = createFeatureSelector<RecipesManagerState>('recipesManager');
 
+    public static readonly user = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.user ? state.user : null;
+    });
+    public static readonly isAuthInProgress = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.authInProgress ? state.authInProgress : false;
+    });
+    public static readonly isUserLoggedIn = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.user ? true : false;
+    });
+    public static readonly isAppLoading = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.isAppLoading ? state.isAppLoading : state.isAppLoading;
+    });
     public static readonly recipesList = createSelector(FromRecipesManagerState.self, state => {
         return state && state.recipesList ? state.recipesList : [];
     });
