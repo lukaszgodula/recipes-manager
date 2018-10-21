@@ -9,7 +9,7 @@
       "projectType": "application",
       "prefix": "",
       "schematics": {
-        "@schematics/angular": {
+        "@schematics/angular:component": {
           "styleext": "scss"
         }
       },
