@@ -1,15 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
-import { Action } from '@ngrx/store';
-import { Subject } from 'rxjs/Subject';
-import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  const actions = new Subject<Action>();
-  const states = new Subject<RecipesManagerState>();
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [

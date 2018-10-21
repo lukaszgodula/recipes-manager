@@ -33,7 +33,6 @@
     "firebase": "^5.5.3",
     "ngrx-store-freeze": "0.2.4",
     "rxjs": "^6.3.2",
-    "rxjs-compat": "^6.3.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

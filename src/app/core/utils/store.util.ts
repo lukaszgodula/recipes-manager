@@ -1,6 +1,6 @@
 import { select, Store } from '@ngrx/store';
 import { MemoizedSelector } from '@ngrx/store/src/selector';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { publishReplay, refCount } from 'rxjs/operators';
 
 export class StoreUtil {
