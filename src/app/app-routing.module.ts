@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'recipe/:id',
-    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     loadChildren: './recipe-details/recipe-details.module#RecipeDetailsModule'
   },
   {

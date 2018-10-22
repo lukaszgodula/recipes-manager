@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { CanActivate } from '@angular/router';
+import { CanActivate, CanLoad } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
+import { AuthService } from './../services/auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanLoad, CanActivate {
 
   constructor(
-    private auth: AngularFireAuth
+    private authService: AuthService
   ) {
   }
 
   canActivate(): Observable<boolean> | boolean {
-    return this.auth.authState.pipe(map(User => {
-      return (User) ? true : false;
-    }));
+    return this.authService.authStateCheck();
   }
+
+  canLoad(): Observable<boolean> | boolean {
+    return this.authService.authStateCheck();
+  }
+
 }

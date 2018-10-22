@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { User } from 'firebase';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ChangeLoginStatus, RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
@@ -56,6 +58,12 @@ export class AuthService {
         this.router.navigate(['/login']);
       }
     });
+  }
+
+  public authStateCheck(): boolean | Observable<boolean> {
+    return this.afAuth.authState.pipe(map(user => {
+      return (user) ? true : false;
+    }));
   }
 
   private updateUserState(u: User): void {
