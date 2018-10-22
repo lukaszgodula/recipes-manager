@@ -17,8 +17,8 @@ import { NavBarModule } from 'src/app/nav-bar/nav-bar.module';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeModule } from './home/home.module';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { RecipesListModule } from './recipes-list/recipes-list.module';
 
 @NgModule({
   declarations: [
@@ -41,9 +41,9 @@ import { RecipesListModule } from './recipes-list/recipes-list.module';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     CoreModule.forRoot(),
     BrowserAnimationsModule,
-    RecipesListModule,
     MatProgressSpinnerModule,
-    NavBarModule
+    NavBarModule,
+    HomeModule.forRoot()
   ],
   providers: [RecipesManagerEffects],
   bootstrap: [AppComponent]
