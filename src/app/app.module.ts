@@ -39,7 +39,7 @@ import { RecipesListModule } from './recipes-list/recipes-list.module';
     ),
     EffectsModule.forRoot([RecipesManagerEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    CoreModule,
+    CoreModule.forRoot(),
     BrowserAnimationsModule,
     RecipesListModule,
     MatProgressSpinnerModule,
