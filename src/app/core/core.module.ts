@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -10,7 +11,8 @@ import { RecipesManagerService } from './services/recipes-manager.service';
 @NgModule({
   imports: [
     CommonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [],
   declarations: []
