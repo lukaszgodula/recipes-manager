@@ -1,18 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/core/models/recipe';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
-import { recipes } from 'src/mocks/mock-recipes';
-import { mockRecipesList } from 'src/mocks/mock-recipes-list';
+
+import { apiUrl } from './constans/api-url';
 
 @Injectable()
 export class RecipesRepository {
+
+  constructor(private http: HttpClient) { }
+
   public getRecipes(): Observable<RecipesListItem[]> {
-    return of(mockRecipesList).pipe(delay(500));
+    return this.http.get<RecipesListItem[]>(`${apiUrl}recipes`);
   }
 
   public getRecipeDetails(id: number): Observable<Recipe> {
-    return of(recipes.find(r => r.id === id)).pipe(delay(400));
+    return this.http.get<Recipe>(`${apiUrl}recipes/${id}`);
   }
 }
