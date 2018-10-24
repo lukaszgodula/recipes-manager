@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AuthGuard } from './guards/auth-guard';
+import { AuthInterceptor } from './http-interceptors/auth-interceprtor';
 import { RecipesRepository } from './recipes.repository';
 import { AuthService } from './services/auth.service';
 import { RecipesManagerService } from './services/recipes-manager.service';
@@ -14,7 +15,9 @@ import { RecipesManagerService } from './services/recipes-manager.service';
     MatSnackBarModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   declarations: []
 })
 export class CoreModule {

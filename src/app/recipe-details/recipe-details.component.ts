@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {
   ClearRecipeDetails,
   LoadRecipeDetails,
@@ -13,12 +14,14 @@ import { DifficultyLevel } from 'src/app/core/enums/difficulty-level.enum';
 import { Ingredient } from 'src/app/core/models/ingredient';
 import { StoreUtil } from 'src/app/core/utils/store.util';
 
+import { UnsubscribingOnDestroy } from '../core/utils/unsubscribing-on-destroy';
+
 @Component({
   selector: 'recipe-details',
   templateUrl: './recipe-details.component.html',
   styleUrls: ['./recipe-details.component.scss']
 })
-export class RecipeDetailsComponent implements OnInit, OnDestroy {
+export class RecipeDetailsComponent extends UnsubscribingOnDestroy implements OnInit, OnDestroy {
   public recipeName: Observable<string>;
   public recipeImageUrl: Observable<string>;
   public recipeDifficultyLevel: Observable<DifficultyLevel>;
@@ -30,6 +33,7 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
   constructor(private store: Store<RecipesManagerState>,
     private router: Router,
     private route: ActivatedRoute) {
+    super();
     this.recipeName = StoreUtil.select(this.store, FromRecipesManagerState.recipeName);
     this.recipeImageUrl = StoreUtil.select(this.store, FromRecipesManagerState.recipeImageUrl);
     this.recipeDifficultyLevel = StoreUtil.select(this.store, FromRecipesManagerState.recipeDifficultyLevel);
@@ -40,20 +44,23 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((pmap) => {
-      this.store.dispatch<LoadRecipeDetails>({
-        type: RecipesManagerActionTypes.LoadRecipeDetails,
-        payload: {
-          id: +pmap.get('id')
-        }
+    this.route.paramMap
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((pmap) => {
+        this.store.dispatch<LoadRecipeDetails>({
+          type: RecipesManagerActionTypes.LoadRecipeDetails,
+          payload: {
+            id: +pmap.get('id')
+          }
+        });
       });
-    });
   }
 
   ngOnDestroy() {
     this.store.dispatch<ClearRecipeDetails>({
       type: RecipesManagerActionTypes.ClearRecipeDetails
     });
+    super.ngOnDestroy();
   }
 
 }

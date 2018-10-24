@@ -10,8 +10,8 @@ import { UserInputLoginData } from 'src/app/core/models/user-input-login-data';
 
 export class LoginFormComponent implements OnInit {
   @Input() authInProgress: boolean;
-  public username: string;
-  public password: string;
+  public username: string = '';
+  public password: string = '';
   public loginInProgress: boolean;
   @Output() loginClicked: EventEmitter<UserInputLoginData> = new EventEmitter();
   @Output() signUpClicked: EventEmitter<UserInputLoginData> = new EventEmitter();
