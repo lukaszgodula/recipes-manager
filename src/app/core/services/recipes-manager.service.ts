@@ -7,7 +7,9 @@ import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfa
 
 import { CuisineType } from '../enums/cuisine-type.enum';
 import { DifficultyLevel } from '../enums/difficulty-level.enum';
+import { RecipeCategory } from '../enums/recipe-category.enum';
 import { FirebaseAuthError } from '../models/firebase-auth-error';
+import { MatSelectCategoryType } from './../models/mat-select-category-type';
 import { MatSelectCuisineType } from './../models/mat-select-cuisine-type';
 import { MatSelectDifficultyLevel } from './../models/mat-select-difficulty-level';
 
@@ -70,6 +72,33 @@ export class RecipesManagerService {
         {
             value: DifficultyLevel.Hard,
             viewValue: DifficultyLevel.Hard
+        }];
+    }
+
+    public setCategoryTypesDropdownValues(): MatSelectCategoryType[] {
+        return [{
+            value: RecipeCategory.Soup,
+            viewValue: RecipeCategory.Soup
+        },
+        {
+            value: RecipeCategory.MainCourse,
+            viewValue: RecipeCategory.MainCourse
+        },
+        {
+            value: RecipeCategory.Dessert,
+            viewValue: RecipeCategory.Dessert
+        },
+        {
+            value: RecipeCategory.Drinks,
+            viewValue: RecipeCategory.Drinks
+        },
+        {
+            value: RecipeCategory.Cake,
+            viewValue: RecipeCategory.Cake
+        },
+        {
+            value: RecipeCategory.Other,
+            viewValue: RecipeCategory.Other
         }];
     }
 }

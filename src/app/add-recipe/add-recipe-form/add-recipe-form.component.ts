@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddRecipeForm } from 'src/app/core/models/add-recipe-form';
 import { FormIngredient } from 'src/app/core/models/form-ingredient';
 import { IngredientListItem } from 'src/app/core/models/ingredient-list-item';
+import { MatSelectCategoryType } from 'src/app/core/models/mat-select-category-type';
 import { MatSelectCuisineType } from 'src/app/core/models/mat-select-cuisine-type';
 import { MatSelectDifficultyLevel } from 'src/app/core/models/mat-select-difficulty-level';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
@@ -19,6 +20,7 @@ export class AddRecipeFormComponent implements OnInit {
   public ingredientsForm: FormGroup;
   public cuisineTypes: MatSelectCuisineType[];
   public difficultyLevels: MatSelectDifficultyLevel[];
+  public categoryTypes: MatSelectCategoryType[];
   public recipeIngredients: FormIngredient[] = [];
   @Output() cancelClicked: EventEmitter<null> = new EventEmitter();
   @Output() submitClicked: EventEmitter<AddRecipeForm> = new EventEmitter();
@@ -31,6 +33,7 @@ export class AddRecipeFormComponent implements OnInit {
   ngOnInit() {
     this.cuisineTypes = this.recipesManagerService.setCuisineTypesDropdownValues();
     this.difficultyLevels = this.recipesManagerService.setDifficultyLevelsDropdownValues();
+    this.categoryTypes = this.recipesManagerService.setCategoryTypesDropdownValues();
   }
 
   public onCancelClicked(): void {
@@ -86,6 +89,7 @@ export class AddRecipeFormComponent implements OnInit {
       cuisineType: ['', Validators.required],
       time: '',
       difficultyLevel: ['', Validators.required],
+      category: ['', Validators.required],
       imageUrl: '',
       portions: '',
       isVege: '',

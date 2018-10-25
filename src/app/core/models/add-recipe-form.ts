@@ -1,5 +1,6 @@
 import { CuisineType } from '../enums/cuisine-type.enum';
 import { DifficultyLevel } from './../enums/difficulty-level.enum';
+import { RecipeCategory } from './../enums/recipe-category.enum';
 import { FormIngredient } from './form-ingredient';
 
 export interface AddRecipeForm {
@@ -12,4 +13,5 @@ export interface AddRecipeForm {
   name: string;
   portions: number;
   time: number;
+  category: RecipeCategory;
 }

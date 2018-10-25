@@ -55,7 +55,8 @@ export class AddRecipeComponent implements OnInit, OnDestroy {
       imageUrl: recipeFormValues.imageUrl,
       portions: recipeFormValues.portions,
       isVege: recipeFormValues.isVege,
-      ingredients: recipeFormValues.ingredients
+      ingredients: recipeFormValues.ingredients,
+      category: recipeFormValues.category
     };
     this.store.dispatch<AddRecipe>({
       type: RecipesManagerActionTypes.AddRecipe,

@@ -39,6 +39,16 @@
   </mat-form-field>
 
   <mat-form-field>
+    <mat-select placeholder="Category Type"
+                formControlName="category">
+      <mat-option *ngFor="let categoryType of categoryTypes"
+                  [value]="categoryType.value">
+        {{categoryType.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
     <input matInput
            type="text"
            placeholder="Image Url"
