@@ -1,4 +1,6 @@
 <h1>Add recipe</h1>
 <div class="add-recipe-form-container">
-  <add-recipe-form (cancelClicked)="navigateBack()"></add-recipe-form>
+  <add-recipe-form [ingredientsList]="ingredientsListItems | async"
+                   (cancelClicked)="navigateBack()"
+                   (submitClicked)="addRecipe($event)"></add-recipe-form>
 </div>

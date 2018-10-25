@@ -1,6 +1,9 @@
 .add-recipe-form {
   display: flex;
   flex-direction: column;
+  mat-chip-list {
+    padding: 1em;
+  }
   .add-recipe-form-action-buttons {
     button {
       margin: 0.5em;

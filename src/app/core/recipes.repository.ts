@@ -6,6 +6,7 @@ import { apiUrl } from './constans/api-url';
 import { AddIngredientRequest } from './models/add-ingredient-request';
 import { AddRecipeRequest } from './models/add-recipe-request';
 import { Ingredient } from './models/ingredient';
+import { IngredientListItem } from './models/ingredient-list-item';
 import { Recipe } from './models/recipe';
 import { RecipesListItem } from './models/recipes-list';
 
@@ -20,6 +21,10 @@ export class RecipesRepository {
 
   public getRecipeDetails(id: number): Observable<Recipe> {
     return this.http.get<Recipe>(`${apiUrl}recipes/${id}`);
+  }
+
+  public getIngredients(): Observable<IngredientListItem[]> {
+    return this.http.get<IngredientListItem[]>(`${apiUrl}ingredients`);
   }
 
   public addRecipe(recipe: AddRecipeRequest): Observable<Recipe> {

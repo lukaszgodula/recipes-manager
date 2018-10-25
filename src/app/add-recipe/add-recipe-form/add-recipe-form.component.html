@@ -64,6 +64,41 @@
               placeholder="Add description"
               formControlName="description"></textarea>
   </mat-form-field>
+  <form [formGroup]="ingredientsForm">
+    <h2>Ingredients</h2>
+
+    <mat-form-field>
+      <mat-select placeholder="Choose ingredient"
+                  formControlName="ingredient">
+        <mat-option *ngFor="let ingredient of ingredientsList"
+                    [value]="ingredient">
+          {{ingredient.name}} ({{ ingredient.unit }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             type="number"
+             placeholder="Quantity"
+             formControlName="quantity">
+    </mat-form-field>
+
+    <button mat-button
+            type="button"
+            color="primary"
+            [disabled]="!ingredientsForm.valid"
+            (click)="addIngredientToForm()">Add to list</button>
+  </form>
+
+  <mat-chip-list>
+    <mat-chip *ngFor="let recipeIngredient of recipeIngredients"
+              [removable]="true"
+              (removed)="removeRecipeIngredientFromForm(recipeIngredient)">
+      {{recipeIngredient.name}} {{recipeIngredient.quantity}} {{recipeIngredient.unit}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
 
   <div class="add-recipe-form-action-buttons">
     <button mat-raised-button
@@ -72,6 +107,6 @@
     <button mat-raised-button
             type="submit"
             [disabled]="!addRecipeForm.valid"
-            color="primary">Add</button>
+            color="primary">Add Recipe</button>
   </div>
 </form>

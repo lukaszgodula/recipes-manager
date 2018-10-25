@@ -5,5 +5,6 @@ export const initialState: RecipesManagerState = {
     authInProgress: false,
     user: null,
     recipesList: [],
-    recipeDetails: null
+    recipeDetails: null,
+    ingredientsList: []
 };

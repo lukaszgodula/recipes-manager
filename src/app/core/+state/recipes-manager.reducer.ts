@@ -8,6 +8,8 @@ export function recipesManagerReducer(state: RecipesManagerState, action: Recipe
       return { ...state, isAppLoading: true };
     case RecipesManagerActionTypes.RecipesLoaded:
       return { ...state, ...action.payload, isAppLoading: false };
+    case RecipesManagerActionTypes.IngredientsLoaded:
+      return { ...state, ...action.payload };
     case RecipesManagerActionTypes.LoadRecipeDetails:
       return { ...state, isAppLoading: true };
     case RecipesManagerActionTypes.RecipeDetailsLoaded:
@@ -22,6 +24,8 @@ export function recipesManagerReducer(state: RecipesManagerState, action: Recipe
       return { ...state, recipeDetails: null };
     case RecipesManagerActionTypes.ClearRecipesList:
       return { ...state, recipesList: null };
+    case RecipesManagerActionTypes.ClearIngredientsList:
+      return { ...state, ingredientsList: [] };
     default:
       return state;
   }

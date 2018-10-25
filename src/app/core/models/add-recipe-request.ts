@@ -3,7 +3,6 @@ import { DifficultyLevel } from '../enums/difficulty-level.enum';
 
 export interface AddRecipeRequest {
   name: string;
-  userId: string;
   cuisineType: CuisineType;
   time: number;
   difficultyLevel: DifficultyLevel;
@@ -15,6 +14,6 @@ export interface AddRecipeRequest {
 }
 
 interface AddRecipeIngredient {
-  ingredientId: number;
+  id: number;
   quantity: number;
 }
