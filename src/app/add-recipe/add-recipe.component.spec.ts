@@ -1,19 +1,38 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { Store, StoreModule } from '@ngrx/store';
+import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
+import { MockRouter } from 'src/testing/router-mock';
 
+import { RecipesManagerState } from './../core/+state/recipes-manager.interfaces';
 import { AddRecipeComponent } from './add-recipe.component';
 
 describe('AddRecipeComponent', () => {
   let component: AddRecipeComponent;
   let fixture: ComponentFixture<AddRecipeComponent>;
+  let store: Store<RecipesManagerState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddRecipeComponent ]
+      imports: [
+        StoreModule.forRoot({
+          ...recipesManagerReducer
+        })
+      ],
+      providers: [{
+        provide: Router,
+        useClass: MockRouter
+      }],
+      declarations: [AddRecipeComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
+    store = TestBed.get(Store);
+    spyOn(store, 'dispatch').and.callThrough();
     fixture = TestBed.createComponent(AddRecipeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
