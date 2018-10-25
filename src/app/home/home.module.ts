@@ -1,3 +1,4 @@
+import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 
@@ -7,7 +8,8 @@ import { HomeComponent } from './home.component';
 @NgModule({
   imports: [
     CommonModule,
-    RecipesListModule
+    RecipesListModule,
+    MatButtonModule
   ],
   declarations: [HomeComponent]
 })
