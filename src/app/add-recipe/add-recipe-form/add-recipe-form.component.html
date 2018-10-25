@@ -63,9 +63,11 @@
            formControlName="portions">
   </mat-form-field>
 
-  <mat-checkbox formControlName="isVege">Vege</mat-checkbox>
+  <div class="add-recipe-form-checkbox-container">
+    <mat-checkbox formControlName="isVege">Vege</mat-checkbox>
+  </div>
 
-  <mat-form-field>
+  <mat-form-field class="add-recipe-form-description-field">
     <textarea matInput
               cdkTextareaAutosize
               #autosize="cdkTextareaAutosize"
