@@ -1,4 +1,5 @@
 <recipes-list></recipes-list>
 <button mat-fab
         class="floating-button"
+        *ngIf="!(isAppLoading | async)"
         (click)="navigateToAddRecipe()"><i class="material-icons">add</i></button>
