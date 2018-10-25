@@ -1,0 +1,9 @@
+.add-recipe-form {
+  display: flex;
+  flex-direction: column;
+  .add-recipe-form-action-buttons {
+    button {
+      margin: 0.5em;
+    }
+  }
+}

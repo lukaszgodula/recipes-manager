@@ -5,7 +5,11 @@ import { Store } from '@ngrx/store';
 import { RecipesManagerActionTypes, SetAppLoadingFlag, ThrowAuthError } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 
+import { CuisineType } from '../enums/cuisine-type.enum';
+import { DifficultyLevel } from '../enums/difficulty-level.enum';
 import { FirebaseAuthError } from '../models/firebase-auth-error';
+import { MatSelectCuisineType } from './../models/mat-select-cuisine-type';
+import { MatSelectDifficultyLevel } from './../models/mat-select-difficulty-level';
 
 @Injectable()
 export class RecipesManagerService {
@@ -41,5 +45,31 @@ export class RecipesManagerService {
 
     public openSnackBar(message: string, action?: string, duration?: number): void {
         this.snackBar.open(message, action, { duration: duration });
+    }
+
+    public setCuisineTypesDropdownValues(): MatSelectCuisineType[] {
+        return [{
+            value: CuisineType.Polish,
+            viewValue: CuisineType.Polish
+        },
+        {
+            value: CuisineType.Italian,
+            viewValue: CuisineType.Italian
+        }];
+    }
+
+    public setDifficultyLevelsDropdownValues(): MatSelectDifficultyLevel[] {
+        return [{
+            value: DifficultyLevel.Easy,
+            viewValue: DifficultyLevel.Easy
+        },
+        {
+            value: DifficultyLevel.Medium,
+            viewValue: DifficultyLevel.Medium
+        },
+        {
+            value: DifficultyLevel.Hard,
+            viewValue: DifficultyLevel.Hard
+        }];
     }
 }
