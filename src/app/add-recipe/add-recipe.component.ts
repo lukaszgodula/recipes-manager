@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -15,6 +16,7 @@ import { IngredientListItem } from '../core/models/ingredient-list-item';
 import { AddRecipeForm } from './../core/models/add-recipe-form';
 import { AddRecipeRequest } from './../core/models/add-recipe-request';
 import { StoreUtil } from './../core/utils/store.util';
+import { AddIngredientDialogComponent } from './add-ingredient-dialog/add-ingredient-dialog.component';
 
 @Component({
   selector: 'add-recipe',
@@ -25,7 +27,8 @@ export class AddRecipeComponent implements OnInit, OnDestroy {
   public ingredientsListItems: Observable<IngredientListItem[]>;
 
   constructor(private router: Router,
-    private store: Store<RecipesManagerState>) {
+    private store: Store<RecipesManagerState>,
+    private dialog: MatDialog) {
     this.ingredientsListItems = StoreUtil.select(this.store, FromRecipesManagerState.ingredientsList);
   }
 
@@ -43,6 +46,10 @@ export class AddRecipeComponent implements OnInit, OnDestroy {
 
   public navigateBack(): void {
     this.router.navigate(['../']);
+  }
+
+  public openAddIngredientDialog(): void {
+    this.dialog.open(AddIngredientDialogComponent);
   }
 
   public addRecipe(recipeFormValues: AddRecipeForm): void {

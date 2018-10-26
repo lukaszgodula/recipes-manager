@@ -101,6 +101,10 @@
             color="primary"
             [disabled]="!ingredientsForm.valid"
             (click)="addIngredientToForm()">Add to list</button>
+    <button mat-button
+            type="button"
+            color="primary"
+            (click)="onAddNewIngredient()">Add new</button>
   </form>
 
   <mat-chip-list>
@@ -113,7 +117,7 @@
   </mat-chip-list>
 
   <div class="add-recipe-form-action-buttons">
-    <button mat-raised-button
+    <button mat-button
             type="button"
             (click)="onCancelClicked()">Cancel</button>
     <button mat-raised-button

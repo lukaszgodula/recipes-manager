@@ -24,6 +24,7 @@ export class AddRecipeFormComponent implements OnInit {
   public recipeIngredients: FormIngredient[] = [];
   @Output() cancelClicked: EventEmitter<null> = new EventEmitter();
   @Output() submitClicked: EventEmitter<AddRecipeForm> = new EventEmitter();
+  @Output() addNewIngredientClicked: EventEmitter<null> = new EventEmitter();
 
   constructor(private formBuilder: FormBuilder,
     private recipesManagerService: RecipesManagerService) {
@@ -42,6 +43,10 @@ export class AddRecipeFormComponent implements OnInit {
 
   public onSubmit(): void {
     this.submitClicked.emit(this.addRecipeForm.value);
+  }
+
+  public onAddNewIngredient(): void {
+    this.addNewIngredientClicked.emit();
   }
 
   public addIngredientToForm(): void {

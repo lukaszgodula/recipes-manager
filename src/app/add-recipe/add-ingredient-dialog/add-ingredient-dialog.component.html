@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Add new ingredient</h1>
+<div mat-dialog-content>
+  <form class="add-ingredient-form"
+        [formGroup]="addIngredientForm">
+    <mat-form-field>
+      <input matInput
+             type="text"
+             placeholder="Ingredient name"
+             formControlName="ingredientName">
+      <mat-error *ngIf="!addIngredientForm.get('ingredientName').valid">
+        Ingredient name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             type="text"
+             placeholder="Ingredient unit (eg. gram, ltr)"
+             formControlName="ingredientUnit">
+      <mat-error *ngIf="!addIngredientForm.get('ingredientUnit').valid">
+        Ingredient unit is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button
+          (click)="onCancelClick()">Cancel</button>
+  <button mat-button
+          color="primary"
+          (click)="onAddClick()"
+          [disabled]="!addIngredientForm.valid"
+          cdkFocusInitial>Add</button>
+</div>
