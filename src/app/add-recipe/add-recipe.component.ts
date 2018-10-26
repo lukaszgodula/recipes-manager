@@ -17,6 +17,7 @@ import { AddRecipeForm } from './../core/models/add-recipe-form';
 import { AddRecipeRequest } from './../core/models/add-recipe-request';
 import { StoreUtil } from './../core/utils/store.util';
 import { AddIngredientDialogComponent } from './add-ingredient-dialog/add-ingredient-dialog.component';
+import { AddRecipeService } from './add-recipe.service';
 
 @Component({
   selector: 'add-recipe',
@@ -28,7 +29,8 @@ export class AddRecipeComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private store: Store<RecipesManagerState>,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private addRecipeService: AddRecipeService) {
     this.ingredientsListItems = StoreUtil.select(this.store, FromRecipesManagerState.ingredientsList);
   }
 
@@ -53,18 +55,8 @@ export class AddRecipeComponent implements OnInit, OnDestroy {
   }
 
   public addRecipe(recipeFormValues: AddRecipeForm): void {
-    const recipeRequest: AddRecipeRequest = {
-      name: recipeFormValues.name,
-      cuisineType: recipeFormValues.cuisineType,
-      time: recipeFormValues.time,
-      difficultyLevel: recipeFormValues.difficultyLevel,
-      description: recipeFormValues.description,
-      imageUrl: recipeFormValues.imageUrl,
-      portions: recipeFormValues.portions,
-      isVege: recipeFormValues.isVege,
-      ingredients: recipeFormValues.ingredients,
-      category: recipeFormValues.category
-    };
+    const recipeRequest: AddRecipeRequest = this.addRecipeService.createAddRecipeRequest(recipeFormValues);
+
     this.store.dispatch<AddRecipe>({
       type: RecipesManagerActionTypes.AddRecipe,
       payload: {

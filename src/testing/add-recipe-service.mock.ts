@@ -9,4 +9,6 @@ export class AddRecipeServiceMock {
 
   public createRecipeIngredientItem() { }
 
+  public createAddRecipeRequest() { }
+
 }

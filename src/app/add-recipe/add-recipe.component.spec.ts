@@ -4,10 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store, StoreModule } from '@ngrx/store';
 import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
+import { AddRecipeServiceMock } from 'src/testing/add-recipe-service.mock';
 import { MockRouter } from 'src/testing/router-mock';
 
 import { RecipesManagerState } from './../core/+state/recipes-manager.interfaces';
 import { AddRecipeComponent } from './add-recipe.component';
+import { AddRecipeService } from './add-recipe.service';
 
 describe('AddRecipeComponent', () => {
   let component: AddRecipeComponent;
@@ -28,6 +30,10 @@ describe('AddRecipeComponent', () => {
       {
         provide: MatDialog,
         useValue: {}
+      },
+      {
+        provide: AddRecipeService,
+        useClass: AddRecipeServiceMock
       }
       ],
       declarations: [AddRecipeComponent],
