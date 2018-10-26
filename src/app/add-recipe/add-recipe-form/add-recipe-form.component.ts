@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { AddRecipeForm } from 'src/app/core/models/add-recipe-form';
 import { FormIngredient } from 'src/app/core/models/form-ingredient';
 import { IngredientListItem } from 'src/app/core/models/ingredient-list-item';
@@ -7,6 +7,8 @@ import { MatSelectCategoryType } from 'src/app/core/models/mat-select-category-t
 import { MatSelectCuisineType } from 'src/app/core/models/mat-select-cuisine-type';
 import { MatSelectDifficultyLevel } from 'src/app/core/models/mat-select-difficulty-level';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
+
+import { AddRecipeService } from '../add-recipe.service';
 
 @Component({
   selector: 'add-recipe-form',
@@ -26,9 +28,10 @@ export class AddRecipeFormComponent implements OnInit {
   @Output() submitClicked: EventEmitter<AddRecipeForm> = new EventEmitter();
   @Output() addNewIngredientClicked: EventEmitter<null> = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder,
-    private recipesManagerService: RecipesManagerService) {
-    this.createAddRecipeForm();
+  constructor(private recipesManagerService: RecipesManagerService,
+    private addRecipeService: AddRecipeService) {
+    this.addRecipeForm = this.addRecipeService.createAddRecipeForm();
+    this.ingredientsForm = this.addRecipeService.createAddIngreientToListForm();
   }
 
   ngOnInit() {
@@ -50,60 +53,21 @@ export class AddRecipeFormComponent implements OnInit {
   }
 
   public addIngredientToForm(): void {
-    const recipeIngredient: FormIngredient = this.createRecipeIngredientItem();
+    const recipeIngredient: FormIngredient = this.addRecipeService.createRecipeIngredientItem(this.ingredientsForm);
     this.recipeIngredients.push(recipeIngredient);
-    this.updateIngredientsInForm();
+    this.updateIngredientsInForm(this.recipeIngredients);
     this.ingredientsForm.reset();
   }
 
   public removeRecipeIngredientFromForm(ingredient: FormIngredient): void {
-    this.removeIngredientFromIngredientsList(ingredient);
-    this.updateIngredientsInForm();
+    this.recipeIngredients = this.addRecipeService.removeIngredientFromIngredientsList(ingredient, this.recipeIngredients);
+    this.updateIngredientsInForm(this.recipeIngredients);
   }
 
-  private removeIngredientFromIngredientsList(ingredient: FormIngredient) {
-    const index: number = this.recipeIngredients.findIndex(i => i.id === ingredient.id);
-    if (index > -1) {
-      this.recipeIngredients.splice(index, 1);
-    }
-  }
-
-  private updateIngredientsInForm() {
-    const ingredientsToForm: FormIngredient[] = this.mapIngredientsToFormValue(this.recipeIngredients);
+  private updateIngredientsInForm(recipeIngredients: FormIngredient[]) {
+    const ingredientsToForm: FormIngredient[] = this.addRecipeService.mapIngredientsToFormValue(recipeIngredients);
     this.addRecipeForm.patchValue({
       ingredients: ingredientsToForm
-    });
-  }
-
-  private mapIngredientsToFormValue(recipeIngredients: FormIngredient[]): FormIngredient[] {
-    return recipeIngredients.map(i => ({ id: i.id, quantity: i.quantity }));
-  }
-
-  private createRecipeIngredientItem(): FormIngredient {
-    return {
-      id: this.ingredientsForm.value.ingredient.id,
-      quantity: this.ingredientsForm.value.quantity,
-      name: this.ingredientsForm.value.ingredient.name,
-      unit: this.ingredientsForm.value.ingredient.unit
-    };
-  }
-
-  private createAddRecipeForm(): void {
-    this.addRecipeForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      cuisineType: ['', Validators.required],
-      time: '',
-      difficultyLevel: ['', Validators.required],
-      category: ['', Validators.required],
-      imageUrl: '',
-      portions: '',
-      isVege: '',
-      description: '',
-      ingredients: [[], Validators.required]
-    });
-    this.ingredientsForm = this.formBuilder.group({
-      ingredient: ['', Validators.required],
-      quantity: ['', Validators.required]
     });
   }
 

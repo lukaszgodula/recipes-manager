@@ -13,6 +13,7 @@ import { AddIngredientDialogComponent } from './add-ingredient-dialog/add-ingred
 import { AddRecipeFormComponent } from './add-recipe-form/add-recipe-form.component';
 import { AddRecipeRoutingModule } from './add-recipe-routing.module';
 import { AddRecipeComponent } from './add-recipe.component';
+import { AddRecipeService } from './add-recipe.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,9 @@ import { AddRecipeComponent } from './add-recipe.component';
   declarations: [AddRecipeComponent, AddRecipeFormComponent, AddIngredientDialogComponent],
   entryComponents: [
     AddIngredientDialogComponent
+  ],
+  providers: [
+    AddRecipeService
   ]
 })
 export class AddRecipeModule { }

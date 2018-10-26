@@ -10,6 +10,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
 import { RecipesManagerServiceMock } from 'src/testing/recipes-manager-service.mock';
 
+import { AddRecipeService } from './../add-recipe.service';
 import { AddRecipeFormComponent } from './add-recipe-form.component';
 
 describe('AddRecipeFormComponent', () => {
@@ -29,7 +30,8 @@ describe('AddRecipeFormComponent', () => {
         NoopAnimationsModule
       ],
       providers: [
-        { provide: RecipesManagerService, useClass: RecipesManagerServiceMock }
+        { provide: RecipesManagerService, useClass: RecipesManagerServiceMock },
+        AddRecipeService
       ],
       declarations: [AddRecipeFormComponent]
     })
