@@ -10,7 +10,14 @@ import { RecipesListItem } from 'src/app/core/models/recipes-list';
 import { IngredientListItem } from '../models/ingredient-list-item';
 import { RecipesRepository } from '../recipes.repository';
 import { RecipesManagerService } from '../services/recipes-manager.service';
-import { AddRecipe, LoadRecipeDetails, RecipesManagerActionTypes, ThrowAuthError } from './recipes-manager.actions';
+import {
+  AddIngredient,
+  AddRecipe,
+  IngredientAdded,
+  LoadRecipeDetails,
+  RecipesManagerActionTypes,
+  ThrowAuthError,
+} from './recipes-manager.actions';
 
 @Injectable()
 export class RecipesManagerEffects {
@@ -80,6 +87,32 @@ export class RecipesManagerEffects {
           ];
         })
       );
+    })
+  );
+
+  @Effect()
+  addIngredient: Observable<Action> = this.actions$.pipe(
+    ofType<AddIngredient>(RecipesManagerActionTypes.AddIngredient),
+    switchMap((action) => {
+      return this.recipesRepository.addIngredient(action.payload.ingredient).pipe(
+        concatMap(() => {
+          return [
+            {
+              type: RecipesManagerActionTypes.IngredientAdded,
+            }
+          ];
+        })
+      );
+    })
+  );
+
+  @Effect()
+  ingredientAdded: Observable<Action> = this.actions$.pipe(
+    ofType<IngredientAdded>(RecipesManagerActionTypes.IngredientAdded),
+    map(() => {
+      return {
+        type: RecipesManagerActionTypes.LoadIngredients
+      };
     })
   );
 
