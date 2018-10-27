@@ -15,10 +15,13 @@ export class FromRecipesManagerState {
         return state && state.user ? true : false;
     });
     public static readonly isAppLoading = createSelector(FromRecipesManagerState.self, state => {
-        return state && state.isAppLoading ? state.isAppLoading : state.isAppLoading;
+        return state && state.isAppLoading ? state.isAppLoading : false;
     });
     public static readonly recipesList = createSelector(FromRecipesManagerState.self, state => {
         return state && state.recipesList ? state.recipesList : [];
+    });
+    public static readonly ingredientsList = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.ingredientsList ? state.ingredientsList : [];
     });
     public static readonly recipeDetails = createSelector(FromRecipesManagerState.self, state => {
         return state && state.recipeDetails ? state.recipeDetails : null;

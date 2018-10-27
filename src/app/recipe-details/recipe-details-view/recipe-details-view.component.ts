@@ -10,7 +10,7 @@ import { Ingredient } from 'src/app/core/models/ingredient';
 })
 export class RecipeDetailsViewComponent implements OnInit {
   @Input() recipeName: string;
-  @Input() recipeImageUrl: string;
+  @Input() recipeImageUrl: string = '';
   @Input() recipeDifficultyLevel: DifficultyLevel;
   @Input() recipeTime: number;
   @Input() isVege: boolean;

@@ -2,6 +2,10 @@ import { Recipe } from 'src/app/core/models/recipe';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
 import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
 
+import { IngredientListItem } from '../models/ingredient-list-item';
+import { AddIngredientRequest } from './../models/add-ingredient-request';
+import { AddRecipeRequest } from './../models/add-recipe-request';
+
 export enum RecipesManagerActionTypes {
   LoadRecipes = '[RecipesManager] LOAD_RECIPES',
   RecipesLoaded = '[RecipesManager] RECIPES_LOADED',
@@ -12,7 +16,14 @@ export enum RecipesManagerActionTypes {
   ChangeLoginStatus = '[RecipesManager] CHANGE_LOGIN_STATUS',
   SetAppLoadingFlag = '[RecipesManager] SET_APP_LOADING_FLAG',
   ThrowAuthError = '[RecipesManager] THROW_AUTH_ERROR',
-  SetAuthProgress = '[RecipesManager] SET_AUTH_PROGRESS'
+  SetAuthProgress = '[RecipesManager] SET_AUTH_PROGRESS',
+  LoadIngredients = '[RecipesManager] LOAD_INGREDIENTS',
+  IngredientsLoaded = '[RecipesManager] INGREDIENTS_LOADED',
+  AddRecipe = '[RecipesManager] ADD_RECIPE',
+  RecipeAdded = '[RecipesManager] RECIPE_ADDED',
+  ClearIngredientsList = '[RecipesManager] CLEAR_INGREDIENTS_LIST',
+  AddIngredient = '[RecipesManager] ADD_INGREDIENT',
+  IngredientAdded = '[RecipesManager] INGREDIENT_ADDED'
 }
 
 export interface SetAuthProgress {
@@ -68,6 +79,43 @@ export interface SetAppLoadingFlag {
   };
 }
 
+export interface LoadIngredients {
+  type: RecipesManagerActionTypes.LoadIngredients;
+}
+
+export interface IngredientsLoaded {
+  type: RecipesManagerActionTypes.IngredientsLoaded;
+  payload: {
+    ingredients: IngredientListItem[]
+  };
+}
+
+export interface AddRecipe {
+  type: RecipesManagerActionTypes.AddRecipe;
+  payload: {
+    recipe: AddRecipeRequest
+  };
+}
+
+export interface RecipeAdded {
+  type: RecipesManagerActionTypes.RecipeAdded;
+}
+
+export interface AddIngredient {
+  type: RecipesManagerActionTypes.AddIngredient;
+  payload: {
+    ingredient: AddIngredientRequest;
+  };
+}
+
+export interface IngredientAdded {
+  type: RecipesManagerActionTypes.IngredientAdded;
+}
+
+export interface ClearIngredientsList {
+  type: RecipesManagerActionTypes.ClearIngredientsList;
+}
+
 export interface ClearRecipeDetails {
   type: RecipesManagerActionTypes.ClearRecipeDetails;
 }
@@ -86,4 +134,11 @@ export type RecipesManagerActions =
   ChangeLoginStatus |
   SetAppLoadingFlag |
   ThrowAuthError |
-  SetAuthProgress;
+  SetAuthProgress |
+  LoadIngredients |
+  IngredientsLoaded |
+  AddRecipe |
+  RecipeAdded |
+  ClearIngredientsList |
+  AddIngredient |
+  IngredientAdded;

@@ -7,6 +7,7 @@ import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfa
 import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
+import { RecipesManagerServiceMock } from 'src/testing/recipes-manager-service.mock';
 import { MockRouter } from 'src/testing/router-mock';
 
 import { NavBarComponent } from './nav-bar.component';
@@ -31,7 +32,7 @@ describe('NavBarComponent', () => {
           provide: Router,
           useClass: MockRouter
         },
-        { provide: RecipesManagerService, useValue: () => { } },
+        { provide: RecipesManagerService, useClass: RecipesManagerServiceMock },
         { provide: AuthService, useValue: () => { } }
       ]
     })

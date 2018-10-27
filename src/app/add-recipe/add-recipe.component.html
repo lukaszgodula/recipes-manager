@@ -1,0 +1,9 @@
+<div class="add-recipe-component-wrapper">
+  <h1>Add recipe</h1>
+  <div class="add-recipe-form-container">
+    <add-recipe-form [ingredientsList]="ingredientsListItems | async"
+                     (cancelClicked)="navigateBack()"
+                     (submitClicked)="addRecipe($event)"
+                     (addNewIngredientClicked)="openAddIngredientDialog()"></add-recipe-form>
+  </div>
+</div>

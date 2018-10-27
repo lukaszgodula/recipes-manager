@@ -1,7 +1,8 @@
 <mat-grid-list cols="3"
                rowHeight="3em">
   <mat-grid-tile colspan="3"
-                 rowspan="4">
+                 rowspan="4"
+                 *ngIf="recipeImageUrl.length > 0">
     <img src="{{recipeImageUrl}}">
   </mat-grid-tile>
   <mat-grid-tile colspan="3"
@@ -31,8 +32,8 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="3"
                  rowspan="2">
-    <span class="recipe-description">
-      {{recipeDescription}}
+    <span class="recipe-description"
+          [innerHTML]="recipeDescription">
     </span>
   </mat-grid-tile>
 </mat-grid-list>
