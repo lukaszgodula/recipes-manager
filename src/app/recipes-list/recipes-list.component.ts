@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -10,6 +11,7 @@ import { RecipesListItem } from 'src/app/core/models/recipes-list';
 import { StoreUtil } from 'src/app/core/utils/store.util';
 
 import { UnsubscribingOnDestroy } from '../core/utils/unsubscribing-on-destroy';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'recipes-list',
@@ -21,7 +23,9 @@ export class RecipesListComponent extends UnsubscribingOnDestroy implements OnIn
   public isUserLoggedIn: Observable<boolean>;
 
   constructor(private store: Store<RecipesManagerState>,
-    private router: Router) {
+    private router: Router,
+    private dialog: MatDialog,
+  ) {
     super();
     this.recipesListItems = StoreUtil.select(this.store, FromRecipesManagerState.recipesList);
     this.isUserLoggedIn = StoreUtil.select(this.store, FromRecipesManagerState.isUserLoggedIn);
@@ -49,7 +53,17 @@ export class RecipesListComponent extends UnsubscribingOnDestroy implements OnIn
   }
 
   public deleteRecipe(recipe: RecipesListItem): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        deleteItemName: recipe.name,
+        deleteItemId: recipe.id
+      }
+    });
 
+    dialogRef.afterClosed()
+      .pipe(filter(v => v), takeUntil(this.ngUnsubscribe))
+      .subscribe(itemToDelete => {
+      });
   }
 
 }
