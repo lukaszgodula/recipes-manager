@@ -6,4 +6,6 @@ export enum CuisineType {
     American = 'American',
     Asian = 'Asian',
     Japanese = 'Japanese',
+    Other = 'Other',
+    None = 'None'
 }

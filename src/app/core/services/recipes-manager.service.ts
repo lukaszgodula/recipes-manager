@@ -57,6 +57,33 @@ export class RecipesManagerService {
         {
             value: CuisineType.Italian,
             viewValue: CuisineType.Italian
+        },
+        {
+            value: CuisineType.Chinese,
+            viewValue: CuisineType.Chinese
+        }, {
+            value: CuisineType.French,
+            viewValue: CuisineType.French
+        },
+        {
+            value: CuisineType.American,
+            viewValue: CuisineType.American
+        },
+        {
+            value: CuisineType.Asian,
+            viewValue: CuisineType.Asian
+        },
+        {
+            value: CuisineType.Japanese,
+            viewValue: CuisineType.Japanese
+        },
+        {
+            value: CuisineType.Other,
+            viewValue: CuisineType.Other
+        },
+        {
+            value: CuisineType.None,
+            viewValue: CuisineType.None
         }];
     }
 
