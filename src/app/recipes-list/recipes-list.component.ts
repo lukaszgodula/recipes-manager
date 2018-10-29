@@ -4,14 +4,19 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { ClearRecipesList, LoadRecipes, RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
+import {
+  ClearRecipesList,
+  DeleteRecipe,
+  LoadRecipes,
+  RecipesManagerActionTypes,
+} from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { FromRecipesManagerState } from 'src/app/core/+state/recipes-manager.selectors';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
 import { StoreUtil } from 'src/app/core/utils/store.util';
 
 import { UnsubscribingOnDestroy } from '../core/utils/unsubscribing-on-destroy';
-import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent, DeleteDialogData } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'recipes-list',
@@ -62,7 +67,13 @@ export class RecipesListComponent extends UnsubscribingOnDestroy implements OnIn
 
     dialogRef.afterClosed()
       .pipe(filter(v => v), takeUntil(this.ngUnsubscribe))
-      .subscribe(itemToDelete => {
+      .subscribe((itemToDelete: DeleteDialogData) => {
+        this.store.dispatch<DeleteRecipe>({
+          type: RecipesManagerActionTypes.DeleteRecipe,
+          payload: {
+            recipeId: itemToDelete.deleteItemId
+          }
+        });
       });
   }
 
