@@ -48,4 +48,8 @@ export class RecipesListComponent extends UnsubscribingOnDestroy implements OnIn
     this.router.navigate([`/recipe/${recipeId}`]);
   }
 
+  public deleteRecipe(recipe: RecipesListItem): void {
+
+  }
+
 }

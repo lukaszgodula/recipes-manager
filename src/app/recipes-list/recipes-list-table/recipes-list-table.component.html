@@ -25,7 +25,8 @@
     <td mat-cell
         *matCellDef="let element"
         stickyEnd>
-      <mat-icon aria-label="Delete">delete</mat-icon>
+      <mat-icon aria-label="Delete"
+                (click)="onDeleteClicked(element)">delete</mat-icon>
     </td>
   </ng-container>
   <tr mat-header-row
