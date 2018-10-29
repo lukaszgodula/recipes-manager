@@ -4,16 +4,16 @@ import { MatTableModule } from '@angular/material/table';
 import { RecipesListTableComponent } from './recipes-list-table.component';
 
 describe('RecipesListTableComponent', () => {
-  const recipesListColumns: string[] = ['name', 'cuisine', 'level'];
+  const recipesListColumns: string[] = ['name', 'cuisine', 'level', 'delete'];
   let component: RecipesListTableComponent;
   let fixture: ComponentFixture<RecipesListTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecipesListTableComponent ],
-      imports: [ MatTableModule ]
+      declarations: [RecipesListTableComponent],
+      imports: [MatTableModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

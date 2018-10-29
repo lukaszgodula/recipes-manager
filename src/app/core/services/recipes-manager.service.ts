@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterEvent } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { RecipesManagerActionTypes, SetAppLoadingFlag, ThrowAuthError } from 'src/app/core/+state/recipes-manager.actions';

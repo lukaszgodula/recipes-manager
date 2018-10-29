@@ -10,7 +10,7 @@ import { RecipesListItem } from 'src/app/core/models/recipes-list';
 export class RecipesListTableComponent implements OnInit {
   @Input() recipesListItems: RecipesListItem[];
   @Output() navigateToDetails: EventEmitter<number> = new EventEmitter();
-  public displayedColumns: string[] = ['name', 'cuisine', 'level'];
+  public displayedColumns: string[] = ['name', 'cuisine', 'level', 'delete'];
 
   constructor() { }
 
