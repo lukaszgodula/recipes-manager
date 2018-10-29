@@ -9,14 +9,20 @@ import { RecipesListItem } from 'src/app/core/models/recipes-list';
 })
 export class RecipesListTableComponent implements OnInit {
   @Input() recipesListItems: RecipesListItem[];
-  @Output() navigateToDetails: EventEmitter<number> = new EventEmitter();
-  public displayedColumns: string[] = ['name', 'cuisine', 'level'];
+  @Output() rowClicked: EventEmitter<number> = new EventEmitter();
+  @Output() deleteClicked: EventEmitter<RecipesListItem> = new EventEmitter();
+  public displayedColumns: string[] = ['name', 'cuisine', 'level', 'delete'];
 
   constructor() { }
 
   ngOnInit() {
   }
   public onRowClicked(rowData: RecipesListItem): void {
-    this.navigateToDetails.emit(rowData.id);
+    this.rowClicked.emit(rowData.id);
+  }
+
+  public onDeleteClicked(recipe: RecipesListItem): void {
+    event.stopPropagation();
+    this.deleteClicked.emit(recipe);
   }
 }

@@ -1,19 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 
 import { RecipesListTableComponent } from './recipes-list-table.component';
 
 describe('RecipesListTableComponent', () => {
-  const recipesListColumns: string[] = ['name', 'cuisine', 'level'];
+  const recipesListColumns: string[] = ['name', 'cuisine', 'level', 'delete'];
   let component: RecipesListTableComponent;
   let fixture: ComponentFixture<RecipesListTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecipesListTableComponent ],
-      imports: [ MatTableModule ]
+      declarations: [RecipesListTableComponent],
+      imports: [MatTableModule,
+        MatIconModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

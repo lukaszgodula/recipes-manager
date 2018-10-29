@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store, StoreModule } from '@ngrx/store';
 import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
@@ -25,6 +26,10 @@ describe('RecipesListComponent', () => {
           provide: Router,
           useValue: () => { }
         },
+        {
+          provide: MatDialog,
+          useValue: {}
+        }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

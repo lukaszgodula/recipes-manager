@@ -13,6 +13,7 @@ import { RecipesManagerService } from '../services/recipes-manager.service';
 import {
   AddIngredient,
   AddRecipe,
+  DeleteRecipe,
   IngredientAdded,
   LoadRecipeDetails,
   RecipesManagerActionTypes,
@@ -113,6 +114,25 @@ export class RecipesManagerEffects {
       return {
         type: RecipesManagerActionTypes.LoadIngredients
       };
+    })
+  );
+
+  @Effect()
+  deleteRecipe: Observable<Action> = this.actions$.pipe(
+    ofType<DeleteRecipe>(RecipesManagerActionTypes.DeleteRecipe),
+    switchMap((action) => {
+      return this.recipesRepository.deleteRecipe(action.payload.recipeId).pipe(
+        concatMap(() => {
+          return [
+            {
+              type: RecipesManagerActionTypes.RecipeDeleted,
+            },
+            {
+              type: RecipesManagerActionTypes.LoadRecipes
+            }
+          ];
+        })
+      );
     })
   );
 

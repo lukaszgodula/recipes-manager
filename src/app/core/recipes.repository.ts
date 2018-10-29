@@ -19,16 +19,20 @@ export class RecipesRepository {
     return this.http.get<RecipesListItem[]>(`${apiUrl}recipes`);
   }
 
-  public getRecipeDetails(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`${apiUrl}recipes/${id}`);
-  }
-
   public getIngredients(): Observable<IngredientListItem[]> {
     return this.http.get<IngredientListItem[]>(`${apiUrl}ingredients`);
   }
 
+  public getRecipeDetails(id: number): Observable<Recipe> {
+    return this.http.get<Recipe>(`${apiUrl}recipes/${id}`);
+  }
+
   public addRecipe(recipe: AddRecipeRequest): Observable<Recipe> {
     return this.http.post<Recipe>(`${apiUrl}recipes/add`, recipe);
+  }
+
+  public deleteRecipe(recipeId: number): Observable<string> {
+    return this.http.delete<string>(`${apiUrl}recipes/${recipeId}`);
   }
 
   public addIngredient(ingredient: AddIngredientRequest): Observable<Ingredient> {
