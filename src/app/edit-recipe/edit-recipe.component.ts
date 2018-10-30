@@ -1,9 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ClearRecipeDetails, LoadIngredients, RecipesManagerActionTypes } from 'src/app/core/+state/recipes-manager.actions';
+import {
+  ClearRecipeDetails,
+  LoadIngredients,
+  RecipesManagerActionTypes,
+  SaveEditedRecipe,
+} from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { FromRecipesManagerState } from 'src/app/core/+state/recipes-manager.selectors';
 import { CuisineType } from 'src/app/core/enums/cuisine-type.enum';
@@ -14,6 +19,8 @@ import { IngredientListItem } from 'src/app/core/models/ingredient-list-item';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
 import { StoreUtil } from 'src/app/core/utils/store.util';
 import { UnsubscribingOnDestroy } from 'src/app/core/utils/unsubscribing-on-destroy';
+
+import { AddRecipeForm } from './../core/models/add-recipe-form';
 
 @Component({
   selector: 'edit-recipe',
@@ -36,7 +43,8 @@ export class EditRecipeComponent extends UnsubscribingOnDestroy implements OnIni
 
   constructor(private route: ActivatedRoute,
     private store: Store<RecipesManagerState>,
-    private recipesManagerService: RecipesManagerService) {
+    private recipesManagerService: RecipesManagerService,
+    private router: Router) {
     super();
     this.recipeId = StoreUtil.select(this.store, FromRecipesManagerState.recipeId);
     this.recipeName = StoreUtil.select(this.store, FromRecipesManagerState.recipeName);
@@ -64,6 +72,19 @@ export class EditRecipeComponent extends UnsubscribingOnDestroy implements OnIni
       type: RecipesManagerActionTypes.ClearRecipeDetails
     });
     super.ngOnDestroy();
+  }
+
+  public navigateToList(): void {
+    this.router.navigate(['../']);
+  }
+
+  public saveEditedRecipe(recipe: AddRecipeForm): void {
+    this.store.dispatch<SaveEditedRecipe>({
+      type: RecipesManagerActionTypes.SaveEditedRecipe,
+      payload: {
+        recipe: recipe
+      }
+    });
   }
 
   private getRouteParams() {

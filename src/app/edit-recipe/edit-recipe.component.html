@@ -12,6 +12,8 @@
                       [recipeDescription]="recipeDescription | async"
                       [recipePortions]="recipePortions | async"
                       [recipeCategory]="recipeCategory | async"
-                      [ingredientsList]="ingredientsListItems | async"></edit-recipe-form>
+                      [ingredientsList]="ingredientsListItems | async"
+                      (cancelClicked)="navigateToList()"
+                      (submitClicked)="saveEditedRecipe($event)"></edit-recipe-form>
   </div>
 </div>
