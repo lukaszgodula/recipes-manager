@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AddIngredientDialogComponent } from 'src/app/add-ingredient-dialog/add-ingredient-dialog.component';
 import {
   ClearRecipeDetails,
   LoadIngredients,
@@ -44,7 +46,8 @@ export class EditRecipeComponent extends UnsubscribingOnDestroy implements OnIni
   constructor(private route: ActivatedRoute,
     private store: Store<RecipesManagerState>,
     private recipesManagerService: RecipesManagerService,
-    private router: Router) {
+    private router: Router,
+    private dialog: MatDialog) {
     super();
     this.recipeId = StoreUtil.select(this.store, FromRecipesManagerState.recipeId);
     this.recipeName = StoreUtil.select(this.store, FromRecipesManagerState.recipeName);
@@ -76,6 +79,10 @@ export class EditRecipeComponent extends UnsubscribingOnDestroy implements OnIni
 
   public navigateToList(): void {
     this.router.navigate(['../']);
+  }
+
+  public openAddIngredientDialog(): void {
+    this.dialog.open(AddIngredientDialogComponent);
   }
 
   public saveEditedRecipe(recipe: AddRecipeForm): void {

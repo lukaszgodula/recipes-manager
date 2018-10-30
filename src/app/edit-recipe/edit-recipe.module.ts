@@ -7,6 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { AddIngredientDialogModule } from 'src/app/add-ingredient-dialog/add-ingredient-dialog.module';
 
 import { AddEditRecipeService } from './../core/services/add-edit-recipe.service';
 import { EditRecipeFormComponent } from './edit-recipe-form/edit-recipe-form.component';
@@ -23,7 +24,8 @@ import { EditRecipeComponent } from './edit-recipe.component';
     MatSelectModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    AddIngredientDialogModule
   ],
   declarations: [EditRecipeComponent, EditRecipeFormComponent],
   providers: [AddEditRecipeService]
