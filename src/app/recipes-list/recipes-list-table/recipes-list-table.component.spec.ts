@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RecipesListTableComponent } from './recipes-list-table.component';
 
 describe('RecipesListTableComponent', () => {
-  const recipesListColumns: string[] = ['name', 'cuisine', 'level', 'delete'];
+  const recipesListColumns: string[] = ['name', 'cuisine', 'level', 'action'];
   let component: RecipesListTableComponent;
   let fixture: ComponentFixture<RecipesListTableComponent>;
 
