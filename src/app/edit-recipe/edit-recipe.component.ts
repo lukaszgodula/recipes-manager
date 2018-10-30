@@ -18,11 +18,13 @@ import { DifficultyLevel } from 'src/app/core/enums/difficulty-level.enum';
 import { RecipeCategory } from 'src/app/core/enums/recipe-category.enum';
 import { Ingredient } from 'src/app/core/models/ingredient';
 import { IngredientListItem } from 'src/app/core/models/ingredient-list-item';
+import { AddEditRecipeService } from 'src/app/core/services/add-edit-recipe.service';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
 import { StoreUtil } from 'src/app/core/utils/store.util';
 import { UnsubscribingOnDestroy } from 'src/app/core/utils/unsubscribing-on-destroy';
 
-import { AddRecipeForm } from './../core/models/add-recipe-form';
+import { EditRecipeForm } from './../core/models/edit-recipe-form';
+import { EditRecipeRequest } from './../core/models/edit-recipe-request';
 
 @Component({
   selector: 'edit-recipe',
@@ -46,6 +48,7 @@ export class EditRecipeComponent extends UnsubscribingOnDestroy implements OnIni
   constructor(private route: ActivatedRoute,
     private store: Store<RecipesManagerState>,
     private recipesManagerService: RecipesManagerService,
+    private addEditRecipeService: AddEditRecipeService,
     private router: Router,
     private dialog: MatDialog) {
     super();
@@ -85,11 +88,12 @@ export class EditRecipeComponent extends UnsubscribingOnDestroy implements OnIni
     this.dialog.open(AddIngredientDialogComponent);
   }
 
-  public saveEditedRecipe(recipe: AddRecipeForm): void {
+  public saveEditedRecipe(recipeFormValues: EditRecipeForm): void {
+    const recipeRequest: EditRecipeRequest = this.addEditRecipeService.createEditRecipeRequest(recipeFormValues);
     this.store.dispatch<SaveEditedRecipe>({
       type: RecipesManagerActionTypes.SaveEditedRecipe,
       payload: {
-        recipe: recipe
+        recipe: recipeRequest
       }
     });
   }

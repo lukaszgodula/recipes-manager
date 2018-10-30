@@ -5,6 +5,9 @@ import { AddRecipeRequest } from 'src/app/core/models/add-recipe-request';
 import { FormIngredient } from 'src/app/core/models/form-ingredient';
 import { Ingredient } from 'src/app/core/models/ingredient';
 
+import { EditRecipeRequest } from '../models/edit-recipe-request';
+import { EditRecipeForm } from './../models/edit-recipe-form';
+
 @Injectable()
 export class AddEditRecipeService {
 
@@ -55,6 +58,23 @@ export class AddEditRecipeService {
 
   public createAddRecipeRequest(recipeFormValues: AddRecipeForm): AddRecipeRequest {
     const recipeRequest: AddRecipeRequest = {
+      name: recipeFormValues.name,
+      cuisineType: recipeFormValues.cuisineType,
+      time: recipeFormValues.time,
+      difficultyLevel: recipeFormValues.difficultyLevel,
+      description: recipeFormValues.description,
+      imageUrl: recipeFormValues.imageUrl,
+      portions: recipeFormValues.portions,
+      isVege: recipeFormValues.isVege,
+      ingredients: recipeFormValues.ingredients,
+      category: recipeFormValues.category
+    };
+    return recipeRequest;
+  }
+
+  public createEditRecipeRequest(recipeFormValues: EditRecipeForm): EditRecipeRequest {
+    const recipeRequest: EditRecipeRequest = {
+      id: recipeFormValues.id,
       name: recipeFormValues.name,
       cuisineType: recipeFormValues.cuisineType,
       time: recipeFormValues.time,
