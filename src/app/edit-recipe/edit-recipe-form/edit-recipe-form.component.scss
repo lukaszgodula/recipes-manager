@@ -1,0 +1,26 @@
+.edit-recipe-form {
+  .edit-recipe-form-description-field {
+    width: 100%;
+  }
+  .edit-recipe-form-checkbox-container{
+    min-width: 15em;
+    margin: 1em 0;
+  }
+  mat-form-field {
+    padding-left: 0.5em;
+    min-width: 15em;
+  }
+  mat-checkbox {
+    padding-left: 0.5em;
+  }
+  mat-chip-list {
+    padding: 1em;
+  }
+  .edit-recipe-form-action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin: 0.5em;
+    }
+  }
+}

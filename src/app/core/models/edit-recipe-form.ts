@@ -1,17 +1,18 @@
 import { CuisineType } from '../enums/cuisine-type.enum';
 import { DifficultyLevel } from '../enums/difficulty-level.enum';
 import { RecipeCategory } from '../enums/recipe-category.enum';
-import { RequestRecipeIngredient } from './request-recipe-ingredient';
+import { FormIngredient } from './form-ingredient';
 
-export interface AddRecipeRequest {
-  name: string;
+export interface EditRecipeForm {
+  id: number;
   cuisineType: CuisineType;
-  time: number;
-  difficultyLevel: DifficultyLevel;
   description: string;
+  difficultyLevel: DifficultyLevel;
   imageUrl: string;
-  portions: number;
+  ingredients: FormIngredient[];
   isVege: boolean;
-  ingredients: RequestRecipeIngredient[];
+  name: string;
+  portions: number;
+  time: number;
   category: RecipeCategory;
 }

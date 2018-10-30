@@ -25,23 +25,12 @@ export class AddRecipeService {
     });
   }
 
-  public createAddIngreientToListForm(): FormGroup {
-    return this.formBuilder.group({
-      ingredient: ['', Validators.required],
-      quantity: ['', Validators.required]
-    });
-  }
-
   public removeIngredientFromIngredientsList(ingredient: FormIngredient, recipeIngredients: FormIngredient[]): FormIngredient[] {
     const index: number = recipeIngredients.findIndex(i => i.id === ingredient.id);
     if (index > -1) {
       recipeIngredients.splice(index, 1);
     }
     return recipeIngredients;
-  }
-
-  public mapIngredientsToFormValue(recipeIngredients: FormIngredient[]): FormIngredient[] {
-    return recipeIngredients.map(i => ({ id: i.id, quantity: i.quantity }));
   }
 
   public createRecipeIngredientItem(ingredientsForm: FormGroup): FormIngredient {

@@ -8,12 +8,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { AddEditRecipeService } from 'src/app/core/services/add-edit-recipe.service';
 
 import { AddIngredientDialogComponent } from './add-ingredient-dialog/add-ingredient-dialog.component';
 import { AddRecipeFormComponent } from './add-recipe-form/add-recipe-form.component';
 import { AddRecipeRoutingModule } from './add-recipe-routing.module';
 import { AddRecipeComponent } from './add-recipe.component';
-import { AddRecipeService } from './add-recipe.service';
 
 @NgModule({
   imports: [
@@ -34,7 +34,7 @@ import { AddRecipeService } from './add-recipe.service';
     AddIngredientDialogComponent
   ],
   providers: [
-    AddRecipeService
+    AddEditRecipeService
   ]
 })
 export class AddRecipeModule { }

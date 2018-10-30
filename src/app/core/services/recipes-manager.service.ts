@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RouterEvent } from '@angular/router';
+import { ParamMap, RouterEvent } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { RecipesManagerActionTypes, SetAppLoadingFlag, ThrowAuthError } from 'src/app/core/+state/recipes-manager.actions';
+import {
+    LoadRecipeDetails,
+    RecipesManagerActionTypes,
+    SetAppLoadingFlag,
+    ThrowAuthError,
+} from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 
 import { CuisineType } from '../enums/cuisine-type.enum';
@@ -127,5 +132,18 @@ export class RecipesManagerService {
             value: RecipeCategory.Other,
             viewValue: RecipeCategory.Other
         }];
+    }
+
+    public dispatchLoadRecipes(pmap: ParamMap) {
+        this.store.dispatch<LoadRecipeDetails>({
+            type: RecipesManagerActionTypes.LoadRecipeDetails,
+            payload: {
+                id: +pmap.get('id')
+            }
+        });
+    }
+
+    public changeHtmlToNewLine(text: string): string {
+        return text.replace(/<br\s*[\/]?>/gi, '\n');
     }
 }

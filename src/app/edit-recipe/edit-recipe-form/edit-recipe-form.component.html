@@ -1,0 +1,128 @@
+<form class="edit-recipe-form"
+      [formGroup]="editRecipeForm"
+      (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput
+           type="text"
+           placeholder="Name"
+           formControlName="name">
+    <mat-error *ngIf="!editRecipeForm.get('name').valid">
+      Name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Cuisine Type"
+                formControlName="cuisineType">
+      <mat-option *ngFor="let cuisineType of cuisineTypes"
+                  [value]="cuisineType.value">
+        {{cuisineType.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           type="number"
+           placeholder="Time (minutes)"
+           formControlName="time">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Difficulty Level"
+                formControlName="difficultyLevel">
+      <mat-option *ngFor="let difficultyLevel of difficultyLevels"
+                  [value]="difficultyLevel.value">
+        {{difficultyLevel.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Category Type"
+                formControlName="category">
+      <mat-option *ngFor="let categoryType of categoryTypes"
+                  [value]="categoryType.value">
+        {{categoryType.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           type="text"
+           placeholder="Image Url"
+           formControlName="imageUrl">
+    <mat-hint>Image url with http(s)</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           type="number"
+           placeholder="Portions"
+           formControlName="portions">
+  </mat-form-field>
+
+  <div class="edit-recipe-form-checkbox-container">
+    <mat-checkbox formControlName="isVege">Vege</mat-checkbox>
+  </div>
+
+  <mat-form-field class="edit-recipe-form-description-field">
+    <textarea matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              cdkAutosizeMaxRows="8"
+              placeholder="Description"
+              formControlName="description"></textarea>
+  </mat-form-field>
+  <form [formGroup]="ingredientsForm">
+    <h2>Ingredients</h2>
+
+    <mat-form-field>
+      <mat-select placeholder="Choose ingredient"
+                  formControlName="ingredient">
+        <mat-option *ngFor="let ingredient of ingredientsList"
+                    [value]="ingredient">
+          {{ingredient.name}} ({{ ingredient.unit }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             type="number"
+             placeholder="Quantity"
+             formControlName="quantity">
+    </mat-form-field>
+
+    <button mat-button
+            type="button"
+            color="primary"
+            [disabled]="!ingredientsForm.valid"
+            (click)="addIngredientToForm()">Add to list</button>
+    <button mat-button
+            type="button"
+            color="primary"
+            (click)="onAddNewIngredient()">Add new</button>
+  </form>
+
+  <mat-chip-list>
+    <mat-chip *ngFor="let recipeIngredient of recipeIngredientsChips"
+              [removable]="true"
+              (removed)="removeRecipeIngredientFromForm(recipeIngredient)">
+      {{recipeIngredient.name}} {{recipeIngredient.quantity}} {{recipeIngredient.unit}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+
+  <div class="edit-recipe-form-action-buttons">
+    <button mat-button
+            type="button"
+            (click)="onCancelClicked()">Cancel</button>
+    <button mat-raised-button
+            type="submit"
+            [disabled]="!editRecipeForm.valid"
+            color="primary">Save</button>
+  </div>
+</form>
