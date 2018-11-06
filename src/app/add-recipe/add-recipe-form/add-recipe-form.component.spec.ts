@@ -7,10 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AddEditRecipeService } from 'src/app/core/services/add-edit-recipe.service';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
 import { RecipesManagerServiceMock } from 'src/testing/recipes-manager-service.mock';
 
-import { AddRecipeService } from './../add-recipe.service';
 import { AddRecipeFormComponent } from './add-recipe-form.component';
 
 describe('AddRecipeFormComponent', () => {
@@ -31,7 +31,7 @@ describe('AddRecipeFormComponent', () => {
       ],
       providers: [
         { provide: RecipesManagerService, useClass: RecipesManagerServiceMock },
-        AddRecipeService
+        AddEditRecipeService
       ],
       declarations: [AddRecipeFormComponent]
     })

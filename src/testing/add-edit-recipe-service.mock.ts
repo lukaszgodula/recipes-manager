@@ -1,4 +1,4 @@
-export class AddRecipeServiceMock {
+export class AddEditRecipeServiceMock {
   public createAddRecipeForm() { }
 
   public createAddIngreientToListForm() { }
