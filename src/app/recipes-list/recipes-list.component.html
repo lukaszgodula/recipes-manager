@@ -1,5 +1,6 @@
 <recipes-list-table *ngIf="((recipesListItems | async).length > 0) && (isUserLoggedIn | async)"
                     [recipesListItems]="recipesListItems | async"
                     (rowClicked)="navigateToDetails($event)"
+                    (editClicked)="navigateToEdit($event)"
                     (deleteClicked)="deleteRecipe($event)">
 </recipes-list-table>

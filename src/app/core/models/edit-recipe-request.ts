@@ -3,7 +3,8 @@ import { DifficultyLevel } from '../enums/difficulty-level.enum';
 import { RecipeCategory } from '../enums/recipe-category.enum';
 import { RequestRecipeIngredient } from './request-recipe-ingredient';
 
-export interface AddRecipeRequest {
+export interface EditRecipeRequest {
+  id: number;
   name: string;
   cuisineType: CuisineType;
   time: number;

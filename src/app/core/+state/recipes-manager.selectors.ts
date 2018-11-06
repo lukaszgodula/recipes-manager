@@ -26,8 +26,20 @@ export class FromRecipesManagerState {
     public static readonly recipeDetails = createSelector(FromRecipesManagerState.self, state => {
         return state && state.recipeDetails ? state.recipeDetails : null;
     });
+    public static readonly recipeId = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.recipeDetails && state.recipeDetails.id ? state.recipeDetails.id : null;
+    });
     public static readonly recipeName = createSelector(FromRecipesManagerState.self, state => {
         return state && state.recipeDetails && state.recipeDetails.name ? state.recipeDetails.name : '';
+    });
+    public static readonly recipeCuisineType = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.recipeDetails && state.recipeDetails.cuisine ? state.recipeDetails.cuisine : null;
+    });
+    public static readonly recipePortions = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.recipeDetails && state.recipeDetails.portions ? state.recipeDetails.portions : null;
+    });
+    public static readonly recipeCategory = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.recipeDetails && state.recipeDetails.category ? state.recipeDetails.category : null;
     });
     public static readonly recipeImageUrl = createSelector(FromRecipesManagerState.self, state => {
         return state && state.recipeDetails && state.recipeDetails.imageUrl ? state.recipeDetails.imageUrl : '';

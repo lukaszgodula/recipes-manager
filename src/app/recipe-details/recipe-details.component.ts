@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -31,7 +31,6 @@ export class RecipeDetailsComponent extends UnsubscribingOnDestroy implements On
   public recipeDescription: Observable<string>;
 
   constructor(private store: Store<RecipesManagerState>,
-    private router: Router,
     private route: ActivatedRoute) {
     super();
     this.recipeName = StoreUtil.select(this.store, FromRecipesManagerState.recipeName);

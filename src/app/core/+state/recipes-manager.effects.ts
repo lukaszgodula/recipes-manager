@@ -17,6 +17,7 @@ import {
   IngredientAdded,
   LoadRecipeDetails,
   RecipesManagerActionTypes,
+  SaveEditedRecipe,
   ThrowAuthError,
 } from './recipes-manager.actions';
 
@@ -129,6 +130,23 @@ export class RecipesManagerEffects {
             },
             {
               type: RecipesManagerActionTypes.LoadRecipes
+            }
+          ];
+        })
+      );
+    })
+  );
+
+  @Effect()
+  editRecipe: Observable<Action> = this.actions$.pipe(
+    ofType<SaveEditedRecipe>(RecipesManagerActionTypes.SaveEditedRecipe),
+    switchMap((action) => {
+      return this.recipesRepository.editRecipe(action.payload.recipe).pipe(
+        concatMap(() => {
+          this.router.navigate(['../']);
+          return [
+            {
+              type: RecipesManagerActionTypes.EditedRecipeSaved,
             }
           ];
         })

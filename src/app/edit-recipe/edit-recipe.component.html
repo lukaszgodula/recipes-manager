@@ -1,0 +1,20 @@
+<div class="edit-recipe-component-wrapper">
+  <h1>Edit recipe</h1>
+  <div class="edit-recipe-form-container">
+    <edit-recipe-form [recipeId]="recipeId | async"
+                      [recipeName]="recipeName | async"
+                      [recipeCuisineType]="recipeCuisineType | async"
+                      [recipeImageUrl]="recipeImageUrl | async"
+                      [recipeDifficultyLevel]="recipeDifficultyLevel | async"
+                      [recipeTime]="recipeTime | async"
+                      [isVege]="isVege | async"
+                      [recipeIngredients]="recipeIngredients | async"
+                      [recipeDescription]="recipeDescription | async"
+                      [recipePortions]="recipePortions | async"
+                      [recipeCategory]="recipeCategory | async"
+                      [ingredientsList]="ingredientsListItems | async"
+                      (cancelClicked)="navigateToList()"
+                      (submitClicked)="saveEditedRecipe($event)"
+                      (addNewIngredientClicked)="openAddIngredientDialog()"></edit-recipe-form>
+  </div>
+</div>

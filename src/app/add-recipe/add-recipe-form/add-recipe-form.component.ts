@@ -6,9 +6,8 @@ import { IngredientListItem } from 'src/app/core/models/ingredient-list-item';
 import { MatSelectCategoryType } from 'src/app/core/models/mat-select-category-type';
 import { MatSelectCuisineType } from 'src/app/core/models/mat-select-cuisine-type';
 import { MatSelectDifficultyLevel } from 'src/app/core/models/mat-select-difficulty-level';
+import { AddEditRecipeService } from 'src/app/core/services/add-edit-recipe.service';
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
-
-import { AddRecipeService } from '../add-recipe.service';
 
 @Component({
   selector: 'add-recipe-form',
@@ -29,9 +28,9 @@ export class AddRecipeFormComponent implements OnInit {
   @Output() addNewIngredientClicked: EventEmitter<null> = new EventEmitter();
 
   constructor(private recipesManagerService: RecipesManagerService,
-    private addRecipeService: AddRecipeService) {
-    this.addRecipeForm = this.addRecipeService.createAddRecipeForm();
-    this.ingredientsForm = this.addRecipeService.createAddIngreientToListForm();
+    private addEditRecipeService: AddEditRecipeService) {
+    this.addRecipeForm = this.addEditRecipeService.createAddRecipeForm();
+    this.ingredientsForm = this.addEditRecipeService.createAddIngreientToListForm();
   }
 
   ngOnInit() {
@@ -53,21 +52,19 @@ export class AddRecipeFormComponent implements OnInit {
   }
 
   public addIngredientToForm(): void {
-    const recipeIngredient: FormIngredient = this.addRecipeService.createRecipeIngredientItem(this.ingredientsForm);
-    this.recipeIngredients.push(recipeIngredient);
+    this.recipeIngredients.push(this.addEditRecipeService.createRecipeIngredientItem(this.ingredientsForm));
     this.updateIngredientsInForm(this.recipeIngredients);
     this.ingredientsForm.reset();
   }
 
   public removeRecipeIngredientFromForm(ingredient: FormIngredient): void {
-    this.recipeIngredients = this.addRecipeService.removeIngredientFromIngredientsList(ingredient, this.recipeIngredients);
+    this.recipeIngredients = this.addEditRecipeService.removeIngredientFromIngredientsList(ingredient, this.recipeIngredients);
     this.updateIngredientsInForm(this.recipeIngredients);
   }
 
   private updateIngredientsInForm(recipeIngredients: FormIngredient[]) {
-    const ingredientsToForm: FormIngredient[] = this.addRecipeService.mapIngredientsToFormValue(recipeIngredients);
     this.addRecipeForm.patchValue({
-      ingredients: ingredientsToForm
+      ingredients: this.addEditRecipeService.mapIngredientsToFormValue(recipeIngredients)
     });
   }
 

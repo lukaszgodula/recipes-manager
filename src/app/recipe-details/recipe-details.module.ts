@@ -20,6 +20,6 @@ import { RecipeDetailsRoutingModule } from './recipe-details.routing.module';
     MatButtonModule,
     MatIconModule
   ],
-  declarations: [RecipeDetailsComponent, RecipeDetailsViewComponent],
+  declarations: [RecipeDetailsComponent, RecipeDetailsViewComponent]
 })
 export class RecipeDetailsModule { }

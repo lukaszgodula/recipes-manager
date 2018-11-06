@@ -11,14 +11,15 @@ import { AddEditRecipeService } from 'src/app/core/services/add-edit-recipe.serv
 import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
 import { RecipesManagerServiceMock } from 'src/testing/recipes-manager-service.mock';
 
-import { AddRecipeFormComponent } from './add-recipe-form.component';
+import { EditRecipeFormComponent } from './edit-recipe-form.component';
 
-describe('AddRecipeFormComponent', () => {
-  let component: AddRecipeFormComponent;
-  let fixture: ComponentFixture<AddRecipeFormComponent>;
+describe('EditRecipeFormComponent', () => {
+  let component: EditRecipeFormComponent;
+  let fixture: ComponentFixture<EditRecipeFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [EditRecipeFormComponent],
       imports: [
         ReactiveFormsModule,
         MatInputModule,
@@ -32,14 +33,13 @@ describe('AddRecipeFormComponent', () => {
       providers: [
         { provide: RecipesManagerService, useClass: RecipesManagerServiceMock },
         AddEditRecipeService
-      ],
-      declarations: [AddRecipeFormComponent]
+      ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddRecipeFormComponent);
+    fixture = TestBed.createComponent(EditRecipeFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

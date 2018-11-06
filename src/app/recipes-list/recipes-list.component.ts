@@ -57,6 +57,10 @@ export class RecipesListComponent extends UnsubscribingOnDestroy implements OnIn
     this.router.navigate([`/recipe/${recipeId}`]);
   }
 
+  public navigateToEdit(recipe: RecipesListItem): void {
+    this.router.navigate([`/recipe/${recipe.id}/edit`]);
+  }
+
   public deleteRecipe(recipe: RecipesListItem): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {
