@@ -28,10 +28,10 @@
             *matHeaderCellDef>Action</th>
         <td mat-cell
             *matCellDef="let element"
+            (click)="$event.stopPropagation()"
             stickyEnd>
             <button mat-icon-button
-                    [matMenuTriggerFor]="recipeActionMenu"
-                    (click)="openMenu()">
+                    [matMenuTriggerFor]="recipeActionMenu">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #recipeActionMenu="matMenu">
