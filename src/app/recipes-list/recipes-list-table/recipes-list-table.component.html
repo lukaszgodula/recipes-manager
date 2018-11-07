@@ -1,9 +1,11 @@
 <table mat-table
-       [dataSource]="recipesListItems"
+       [dataSource]="dataSource"
+       matSort
        class="mat-elevation-z8">
     <ng-container matColumnDef="name">
         <th mat-header-cell
-            *matHeaderCellDef> Name </th>
+            *matHeaderCellDef
+            mat-sort-header> Name </th>
         <td mat-cell
             *matCellDef="let element">
             <span>
@@ -13,13 +15,15 @@
     </ng-container>
     <ng-container matColumnDef="cuisine">
         <th mat-header-cell
-            *matHeaderCellDef> Cuisine </th>
+            *matHeaderCellDef
+            mat-sort-header> Cuisine </th>
         <td mat-cell
             *matCellDef="let element"> {{element.cuisine}} </td>
     </ng-container>
     <ng-container matColumnDef="level">
         <th mat-header-cell
-            *matHeaderCellDef> Difficulty level </th>
+            *matHeaderCellDef
+            mat-sort-header> Difficulty level </th>
         <td mat-cell
             *matCellDef="let element"> {{element.level}} </td>
     </ng-container>

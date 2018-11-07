@@ -1,5 +1,16 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
 
 @Component({
@@ -8,19 +19,28 @@ import { RecipesListItem } from 'src/app/core/models/recipes-list';
   styleUrls: ['./recipes-list-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RecipesListTableComponent implements OnInit {
+export class RecipesListTableComponent implements OnInit, OnChanges {
   @Input() recipesListItems: RecipesListItem[];
   @Output() rowClicked: EventEmitter<number> = new EventEmitter();
   @Output() editClicked: EventEmitter<RecipesListItem> = new EventEmitter();
   @Output() deleteClicked: EventEmitter<RecipesListItem> = new EventEmitter();
+
   public displayedColumns: string[] = ['name', 'cuisine', 'level', 'action'];
+  public dataSource = new MatTableDataSource(this.recipesListItems);
 
   @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor() { }
 
+  ngOnChanges() {
+    this.dataSource = new MatTableDataSource(this.recipesListItems);
+    this.dataSource.sort = this.sort;
+  }
+
   ngOnInit() {
   }
+
   public onRowClicked(rowData: RecipesListItem): void {
     this.rowClicked.emit(rowData.id);
   }

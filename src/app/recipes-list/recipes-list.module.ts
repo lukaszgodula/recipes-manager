@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
 import { DeleteDialogModule } from '../delete-dialog/delete-dialog.module';
@@ -16,7 +17,8 @@ import { RecipesListComponent } from './recipes-list.component';
     MatIconModule,
     DeleteDialogModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSortModule
   ],
   declarations: [RecipesListComponent, RecipesListTableComponent],
   exports: [RecipesListComponent]
