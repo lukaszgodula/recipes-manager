@@ -1,14 +1,15 @@
 import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Input,
-    OnChanges,
-    OnInit,
-    Output,
-    ViewChild,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild,
 } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
@@ -30,12 +31,15 @@ export class RecipesListTableComponent implements OnInit, OnChanges {
 
   @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
 
   constructor() { }
 
   ngOnChanges() {
     this.dataSource = new MatTableDataSource(this.recipesListItems);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
