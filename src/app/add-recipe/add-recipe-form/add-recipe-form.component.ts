@@ -45,6 +45,7 @@ export class AddRecipeFormComponent implements OnInit {
 
   public onSubmit(): void {
     this.submitClicked.emit(this.addRecipeForm.value);
+    this.addRecipeForm.reset();
   }
 
   public onAddNewIngredient(): void {

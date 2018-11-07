@@ -71,6 +71,7 @@ export class EditRecipeFormComponent implements OnChanges, OnInit {
 
   public onSubmit(): void {
     this.submitClicked.emit(this.editRecipeForm.value);
+    this.editRecipeForm.reset();
   }
 
   public addIngredientToForm(): void {
