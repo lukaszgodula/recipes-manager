@@ -66,6 +66,7 @@ export class AddRecipeFormComponent implements OnInit {
     this.addRecipeForm.patchValue({
       ingredients: this.addEditRecipeService.mapIngredientsToFormValue(recipeIngredients)
     });
+    this.addRecipeForm.markAsDirty();
   }
 
 }

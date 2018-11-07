@@ -71,7 +71,7 @@ export class AddRecipeComponent implements OnInit, OnDestroy {
   }
 
   public canDeactivate(): Observable<boolean> | boolean {
-    if (!this.addRecipeFormComponent.addRecipeForm.dirty && this.addRecipeFormComponent.recipeIngredients.length === 0) {
+    if (!this.addRecipeFormComponent.addRecipeForm.dirty) {
       return true;
     }
     return this.recipesManagerService.confirmExit('You have unsaved changes, are you sure to discard them?');
