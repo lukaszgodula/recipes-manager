@@ -5,9 +5,11 @@ import { Router } from '@angular/router';
 import { Store, StoreModule } from '@ngrx/store';
 import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
 import { AddEditRecipeServiceMock } from 'src/testing/add-edit-recipe-service.mock';
+import { RecipesManagerServiceMock } from 'src/testing/recipes-manager-service.mock';
 import { MockRouter } from 'src/testing/router-mock';
 
 import { AddEditRecipeService } from '../core/services/add-edit-recipe.service';
+import { RecipesManagerService } from '../core/services/recipes-manager.service';
 import { RecipesManagerState } from './../core/+state/recipes-manager.interfaces';
 import { AddRecipeComponent } from './add-recipe.component';
 
@@ -34,6 +36,10 @@ describe('AddRecipeComponent', () => {
       {
         provide: AddEditRecipeService,
         useClass: AddEditRecipeServiceMock
+      },
+      {
+        provide: RecipesManagerService,
+        useClass: RecipesManagerServiceMock
       }
       ],
       declarations: [AddRecipeComponent],

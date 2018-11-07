@@ -1,5 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { inject, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterEvent } from '@angular/router';
@@ -29,6 +30,7 @@ describe('RecipesManagerService', () => {
       }),
       OverlayModule,
       MatSnackBarModule,
+      MatDialogModule,
       NoopAnimationsModule
     ]
   }));

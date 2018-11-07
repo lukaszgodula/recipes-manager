@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -25,6 +25,7 @@ import { UnsubscribingOnDestroy } from 'src/app/core/utils/unsubscribing-on-dest
 
 import { EditRecipeForm } from './../core/models/edit-recipe-form';
 import { EditRecipeRequest } from './../core/models/edit-recipe-request';
+import { EditRecipeFormComponent } from './edit-recipe-form/edit-recipe-form.component';
 
 @Component({
   selector: 'edit-recipe',
@@ -44,6 +45,8 @@ export class EditRecipeComponent extends UnsubscribingOnDestroy implements OnIni
   public recipePortions: Observable<number>;
   public recipeCategory: Observable<RecipeCategory>;
   public ingredientsListItems: Observable<IngredientListItem[]>;
+
+  @ViewChild(EditRecipeFormComponent) editRecipeFormCmponent: EditRecipeFormComponent;
 
   constructor(private route: ActivatedRoute,
     private store: Store<RecipesManagerState>,
@@ -104,5 +107,12 @@ export class EditRecipeComponent extends UnsubscribingOnDestroy implements OnIni
       .subscribe((pmap) => {
         this.recipesManagerService.dispatchLoadRecipes(pmap);
       });
+  }
+
+  public canDeactivate(): Observable<boolean> | boolean {
+    if (!this.editRecipeFormCmponent.editRecipeForm.dirty) {
+      return true;
+    }
+    return this.recipesManagerService.confirmExit('You have unsaved changes, are you sure to discard them?');
   }
 }

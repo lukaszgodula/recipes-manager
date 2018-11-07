@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ParamMap, RouterEvent } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 import {
   LoadRecipeDetails,
   RecipesManagerActionTypes,
@@ -22,7 +26,8 @@ import { MatSelectDifficultyLevel } from './../models/mat-select-difficulty-leve
 export class RecipesManagerService {
 
   constructor(private store: Store<RecipesManagerState>,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    private dialog: MatDialog) { }
 
   public setAppLoadingFlag(isLoading: boolean) {
     this.store.dispatch<SetAppLoadingFlag>({
@@ -145,5 +150,10 @@ export class RecipesManagerService {
 
   public changeHtmlToNewLine(text: string): string {
     return text.replace(/<br\s*[\/]?>/gi, '\n');
+  }
+
+  public confirmExit(message?: string): Observable<boolean> {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: { message: message || 'Are you sure?' } });
+    return dialogRef.afterClosed().pipe(switchMap((data: boolean) => of(data)));
   }
 }

@@ -3,4 +3,5 @@ export class RecipesManagerServiceMock {
   public setDifficultyLevelsDropdownValues() { }
   public setCategoryTypesDropdownValues() { }
   public isInRoot() { }
+  public confirmExit() { }
 }
