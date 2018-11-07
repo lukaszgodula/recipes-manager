@@ -10,7 +10,6 @@ describe('DeleteDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        // MatButtonModule,
         MatDialogModule
       ],
       declarations: [DeleteDialogComponent],
