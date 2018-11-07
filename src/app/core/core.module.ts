@@ -4,7 +4,7 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { ConfirmationDialogModule } from '../confirmation-dialog/confirmation-dialog.module';
-import { AuthGuard } from './guards/auth-guard';
+import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './http-interceptors/auth-interceprtor';
 import { RecipesRepository } from './recipes.repository';
 import { AuthService } from './services/auth.service';
