@@ -1,12 +1,12 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  ViewChild,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    ViewChild,
 } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSort } from '@angular/material/sort';
@@ -25,7 +25,7 @@ export class RecipesListTableComponent implements OnInit, OnChanges {
   @Output() editClicked: EventEmitter<RecipesListItem> = new EventEmitter();
   @Output() deleteClicked: EventEmitter<RecipesListItem> = new EventEmitter();
 
-  public displayedColumns: string[] = ['name', 'cuisine', 'level', 'action'];
+  public displayedColumns: string[] = ['name', 'cuisine', 'category', 'action'];
   public dataSource = new MatTableDataSource(this.recipesListItems);
 
   @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
