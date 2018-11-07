@@ -41,6 +41,10 @@ export class RecipesListTableComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
+  public applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   public onRowClicked(rowData: RecipesListItem): void {
     this.rowClicked.emit(rowData.id);
   }

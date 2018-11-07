@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -17,6 +17,7 @@ import { StoreUtil } from 'src/app/core/utils/store.util';
 
 import { UnsubscribingOnDestroy } from '../core/utils/unsubscribing-on-destroy';
 import { DeleteDialogComponent, DeleteDialogData } from '../delete-dialog/delete-dialog.component';
+import { RecipesListTableComponent } from './recipes-list-table/recipes-list-table.component';
 
 @Component({
   selector: 'recipes-list',
@@ -26,6 +27,8 @@ import { DeleteDialogComponent, DeleteDialogData } from '../delete-dialog/delete
 export class RecipesListComponent extends UnsubscribingOnDestroy implements OnInit, OnDestroy {
   public recipesListItems: Observable<RecipesListItem[]>;
   public isUserLoggedIn: Observable<boolean>;
+
+  @ViewChild(RecipesListTableComponent) recipeListTableComponent: RecipesListTableComponent;
 
   constructor(private store: Store<RecipesManagerState>,
     private router: Router,
@@ -79,6 +82,10 @@ export class RecipesListComponent extends UnsubscribingOnDestroy implements OnIn
           }
         });
       });
+  }
+
+  public applyFilter(filterValue: string): void {
+    this.recipeListTableComponent.applyFilter(filterValue);
   }
 
 }
