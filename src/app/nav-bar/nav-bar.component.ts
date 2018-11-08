@@ -38,6 +38,10 @@ export class NavBarComponent implements OnInit {
     this.authService.logOut();
   }
 
+  public navigateToManageIngredients(): void {
+    this.router.navigate(['/manage-ingredients']);
+  }
+
   private setRouteFlags(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

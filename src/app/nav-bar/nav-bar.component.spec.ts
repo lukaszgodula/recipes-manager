@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { Store, StoreModule } from '@ngrx/store';
@@ -25,7 +26,8 @@ describe('NavBarComponent', () => {
         MatIconModule,
         StoreModule.forRoot({
           ...recipesManagerReducer
-        })
+        }),
+        MatMenuModule
       ],
       providers: [
         {
