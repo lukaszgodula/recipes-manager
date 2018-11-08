@@ -26,7 +26,7 @@ export class EditIngredientDialogComponent extends UnsubscribingOnDestroy implem
   }
 
   ngOnInit() {
-    this.dialogRef.afterOpen().pipe(takeUntil(this.ngUnsubscribe))
+    this.dialogRef.afterOpened().pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => {
         this.setFormValues(this.data);
       });
