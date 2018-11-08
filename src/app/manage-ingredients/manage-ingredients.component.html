@@ -6,4 +6,5 @@
   </mat-form-field>
 </div>
 
-<ingredients-list-table [ingredientsList]="ingredientsListItems | async"></ingredients-list-table>
+<ingredients-list-table [ingredientsList]="ingredientsListItems | async"
+                        (deleteClicked)="deleteIngredient($event)"></ingredients-list-table>

@@ -28,7 +28,9 @@ export enum RecipesManagerActionTypes {
   DeleteRecipe = '[RecipesManager] DELETE_RECIPE',
   RecipeDeleted = '[RecipesManager] RECIPE_DELETED',
   SaveEditedRecipe = '[RecipesManager] SAVE_EDITED_RECIPE',
-  EditedRecipeSaved = '[RecipesManager] EDITED_RECIPE_SAVED'
+  EditedRecipeSaved = '[RecipesManager] EDITED_RECIPE_SAVED',
+  DeleteIngredient = '[RecipesManager] DELETE_INGREDIENT',
+  IngredientDeleted = '[RecipesManager] INGREDIENT_DELETED'
 }
 
 export interface SetAuthProgress {
@@ -139,6 +141,17 @@ export interface RecipeDeleted {
   type: RecipesManagerActionTypes.RecipeDeleted;
 }
 
+export interface DeleteIngredient {
+  type: RecipesManagerActionTypes.DeleteIngredient;
+  payload: {
+    ingredientId: number;
+  };
+}
+
+export interface IngredientDeleted {
+  type: RecipesManagerActionTypes.IngredientDeleted;
+}
+
 export interface ClearIngredientsList {
   type: RecipesManagerActionTypes.ClearIngredientsList;
 }
@@ -172,4 +185,6 @@ export type RecipesManagerActions =
   DeleteRecipe |
   RecipeDeleted |
   SaveEditedRecipe |
-  EditedRecipeSaved;
+  EditedRecipeSaved |
+  DeleteIngredient |
+  IngredientDeleted;

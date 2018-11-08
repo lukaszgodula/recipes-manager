@@ -43,4 +43,8 @@ export class RecipesRepository {
   public addIngredient(ingredient: AddIngredientRequest): Observable<Ingredient> {
     return this.http.post<Ingredient>(`${apiUrl}ingredients/add`, ingredient);
   }
+
+  public deleteIngredient(ingredientId: number): Observable<null> {
+    return this.http.delete<null>(`${apiUrl}ingredients/${ingredientId}`);
+  }
 }
