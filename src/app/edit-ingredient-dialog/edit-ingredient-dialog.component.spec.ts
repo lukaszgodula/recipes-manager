@@ -27,7 +27,7 @@ describe('EditIngredientDialogComponent', () => {
         NoopAnimationsModule
       ],
       providers: [
-        { provide: MatDialogRef, useValue: { afterOpen(): Observable<null> { return of(null); } } },
+        { provide: MatDialogRef, useValue: { afterOpened(): Observable<null> { return of(null); } } },
         { provide: MAT_DIALOG_DATA, useValue: {} },
       ],
     })
