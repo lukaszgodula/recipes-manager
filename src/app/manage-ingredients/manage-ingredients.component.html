@@ -1,0 +1,12 @@
+<div class="ingredients-list-table-filter-input-wrapper">
+  <mat-form-field>
+    <input matInput
+           (keyup)="applyFilter($event.target.value)"
+           placeholder="Filter">
+  </mat-form-field>
+</div>
+<div class="ingredients-list-table-wrapper">
+  <ingredients-list-table [ingredientsList]="ingredientsListItems | async"
+                          (deleteClicked)="deleteIngredient($event)"
+                          (editClicked)="editIngredient($event)"></ingredients-list-table>
+</div>

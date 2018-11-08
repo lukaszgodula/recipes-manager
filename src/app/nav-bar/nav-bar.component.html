@@ -6,9 +6,21 @@
   </button>
   <span>Recipes Manager</span>
   <button mat-icon-button
-          class="logout-button"
-          (click)="logOut()"
-          *ngIf="isLoggedIn | async">
-    <mat-icon aria-label="Go back">exit_to_app</mat-icon>
+          class="settings-button"
+          *ngIf="isLoggedIn | async"
+          [matMenuTriggerFor]="navbarActionMenu">
+    <mat-icon aria-label="Go back">settings</mat-icon>
   </button>
+  <mat-menu #navbarActionMenu="matMenu">
+    <button mat-menu-item
+            (click)="navigateToManageIngredients()">
+      <mat-icon aria-label="Manage ingredients">format_list_bulleted</mat-icon>
+      <span>Manage ingredients</span>
+    </button>
+    <button mat-menu-item
+            (click)="logOut()">
+      <mat-icon aria-label="Logout">exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

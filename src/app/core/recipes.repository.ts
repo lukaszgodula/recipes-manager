@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { apiUrl } from './constans/api-url';
 import { AddIngredientRequest } from './models/add-ingredient-request';
 import { AddRecipeRequest } from './models/add-recipe-request';
+import { EditIngredientRequest } from './models/edit-ingredient-request';
 import { EditRecipeRequest } from './models/edit-recipe-request';
 import { Ingredient } from './models/ingredient';
 import { IngredientListItem } from './models/ingredient-list-item';
@@ -42,5 +43,13 @@ export class RecipesRepository {
 
   public addIngredient(ingredient: AddIngredientRequest): Observable<Ingredient> {
     return this.http.post<Ingredient>(`${apiUrl}ingredients/add`, ingredient);
+  }
+
+  public deleteIngredient(ingredientId: number): Observable<null> {
+    return this.http.delete<null>(`${apiUrl}ingredients/${ingredientId}`);
+  }
+
+  public editIngredient(ingredient: EditIngredientRequest): Observable<null> {
+    return this.http.put<null>(`${apiUrl}ingredients/edit`, ingredient);
   }
 }

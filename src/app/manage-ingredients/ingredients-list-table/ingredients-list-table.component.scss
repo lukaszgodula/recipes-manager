@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+.mat-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+td {
+  max-width: 30px;
+  }
+.mat-row {
+  cursor: pointer;
+}
+td.mat-column-action {
+  width: 35px;
+  text-align: center;
+}
