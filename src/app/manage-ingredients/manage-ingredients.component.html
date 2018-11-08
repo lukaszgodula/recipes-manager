@@ -7,4 +7,5 @@
 </div>
 
 <ingredients-list-table [ingredientsList]="ingredientsListItems | async"
-                        (deleteClicked)="deleteIngredient($event)"></ingredients-list-table>
+                        (deleteClicked)="deleteIngredient($event)"
+                        (editClicked)="editIngredient($event)"></ingredients-list-table>

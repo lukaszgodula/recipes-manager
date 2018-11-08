@@ -15,6 +15,7 @@ import {
   AddRecipe,
   DeleteIngredient,
   DeleteRecipe,
+  EditIngredient,
   IngredientAdded,
   LoadRecipeDetails,
   RecipesManagerActionTypes,
@@ -135,6 +136,25 @@ export class RecipesManagerEffects {
       return {
         type: RecipesManagerActionTypes.LoadIngredients
       };
+    })
+  );
+
+  @Effect()
+  editIngredient: Observable<Action> = this.actions$.pipe(
+    ofType<EditIngredient>(RecipesManagerActionTypes.EditIngredient),
+    switchMap((action) => {
+      return this.recipesRepository.editIngredient(action.payload.ingredient).pipe(
+        concatMap(() => {
+          return [
+            {
+              type: RecipesManagerActionTypes.IngredientEdited
+            },
+            {
+              type: RecipesManagerActionTypes.LoadIngredients
+            }
+          ];
+        })
+      );
     })
   );
 

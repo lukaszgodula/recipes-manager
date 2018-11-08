@@ -9,6 +9,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
+import { EditIngredientDialogModule } from '../edit-ingredient-dialog/edit-ingredient-dialog.module';
 import { IngredientsListTableComponent } from './ingredients-list-table/ingredients-list-table.component';
 import { ManageIngredientsRoutingModule } from './manage-ingredients-routing.module';
 import { ManageIngredientsComponent } from './manage-ingredients.component';
@@ -25,7 +26,8 @@ import { ManageIngredientsComponent } from './manage-ingredients.component';
     MatButtonModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    EditIngredientDialogModule
   ]
 })
 export class ManageIngredientsModule { }

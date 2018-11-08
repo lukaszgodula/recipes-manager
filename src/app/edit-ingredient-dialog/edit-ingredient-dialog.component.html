@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Edit ingredient</h1>
+<form class="edit-ingredient-form"
+      [formGroup]="editIngredientForm"
+      (ngSubmit)="onEditClick()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput
+             type="text"
+             placeholder="Ingredient name"
+             formControlName="ingredientName">
+      <mat-error *ngIf="!editIngredientForm.get('ingredientName').valid">
+        Ingredient name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             type="text"
+             placeholder="Ingredient unit (eg. gram, ltr)"
+             formControlName="ingredientUnit">
+      <mat-error *ngIf="!editIngredientForm.get('ingredientUnit').valid">
+        Ingredient unit is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button
+            type="button"
+            (click)="onCancelClick()">Cancel</button>
+    <button mat-button
+            color="primary"
+            type="submit"
+            [disabled]="!editIngredientForm.valid"
+            cdkFocusInitial>Save</button>
+  </div>
+</form>

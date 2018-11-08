@@ -2,6 +2,7 @@ import { Recipe } from 'src/app/core/models/recipe';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
 import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
 
+import { EditIngredientRequest } from '../models/edit-ingredient-request';
 import { IngredientListItem } from '../models/ingredient-list-item';
 import { AddIngredientRequest } from './../models/add-ingredient-request';
 import { AddRecipeRequest } from './../models/add-recipe-request';
@@ -30,7 +31,9 @@ export enum RecipesManagerActionTypes {
   SaveEditedRecipe = '[RecipesManager] SAVE_EDITED_RECIPE',
   EditedRecipeSaved = '[RecipesManager] EDITED_RECIPE_SAVED',
   DeleteIngredient = '[RecipesManager] DELETE_INGREDIENT',
-  IngredientDeleted = '[RecipesManager] INGREDIENT_DELETED'
+  IngredientDeleted = '[RecipesManager] INGREDIENT_DELETED',
+  EditIngredient = '[RecipesManager] EDIT_INGREDIENT',
+  IngredientEdited = '[RecipesManager] INGREDIENT_EDITED'
 }
 
 export interface SetAuthProgress {
@@ -152,6 +155,17 @@ export interface IngredientDeleted {
   type: RecipesManagerActionTypes.IngredientDeleted;
 }
 
+export interface EditIngredient {
+  type: RecipesManagerActionTypes.EditIngredient;
+  payload: {
+    ingredient: EditIngredientRequest;
+  };
+}
+
+export interface IngredientEdited {
+  type: RecipesManagerActionTypes.IngredientEdited;
+}
+
 export interface ClearIngredientsList {
   type: RecipesManagerActionTypes.ClearIngredientsList;
 }
@@ -187,4 +201,6 @@ export type RecipesManagerActions =
   SaveEditedRecipe |
   EditedRecipeSaved |
   DeleteIngredient |
-  IngredientDeleted;
+  IngredientDeleted |
+  EditIngredient |
+  IngredientEdited;

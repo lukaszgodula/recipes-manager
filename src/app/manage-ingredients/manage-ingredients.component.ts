@@ -16,6 +16,7 @@ import { IngredientListItem } from '../core/models/ingredient-list-item';
 import { StoreUtil } from '../core/utils/store.util';
 import { UnsubscribingOnDestroy } from '../core/utils/unsubscribing-on-destroy';
 import { DeleteDialogComponent, DeleteDialogData } from '../delete-dialog/delete-dialog.component';
+import { EditIngredientDialogComponent } from '../edit-ingredient-dialog/edit-ingredient-dialog.component';
 import { IngredientsListTableComponent } from './ingredients-list-table/ingredients-list-table.component';
 
 @Component({
@@ -68,6 +69,16 @@ export class ManageIngredientsComponent extends UnsubscribingOnDestroy implement
           }
         });
       });
+  }
+
+  public editIngredient(ingredient: IngredientListItem): void {
+    this.dialog.open(EditIngredientDialogComponent, {
+      data: {
+        id: ingredient.id,
+        name: ingredient.name,
+        unit: ingredient.unit
+      }
+    });
   }
 
 }
