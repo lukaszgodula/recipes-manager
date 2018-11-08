@@ -24,6 +24,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './add-recipe/add-recipe.module#AddRecipeModule'
   },
+  {
+    path: 'manage-ingredients',
+    canActivate: [AuthGuard],
+    loadChildren: './manage-ingredients/manage-ingredients.module#ManageIngredientsModule'
+  },
   // { path: 'not-found', component: PageNotFoundComponent },
   // { path: '**', redirectTo: '/not-found' },
 ];
