@@ -5,7 +5,8 @@
            placeholder="Filter">
   </mat-form-field>
 </div>
-
-<ingredients-list-table [ingredientsList]="ingredientsListItems | async"
-                        (deleteClicked)="deleteIngredient($event)"
-                        (editClicked)="editIngredient($event)"></ingredients-list-table>
+<div class="ingredients-list-table-wrapper">
+  <ingredients-list-table [ingredientsList]="ingredientsListItems | async"
+                          (deleteClicked)="deleteIngredient($event)"
+                          (editClicked)="editIngredient($event)"></ingredients-list-table>
+</div>
