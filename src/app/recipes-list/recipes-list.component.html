@@ -1,6 +1,15 @@
-<recipes-list-table *ngIf="((recipesListItems | async).length > 0) && (isUserLoggedIn | async)"
-                    [recipesListItems]="recipesListItems | async"
-                    (rowClicked)="navigateToDetails($event)"
-                    (editClicked)="navigateToEdit($event)"
-                    (deleteClicked)="deleteRecipe($event)">
-</recipes-list-table>
+<div class="recipe-list-table-filter-input-wrapper">
+  <mat-form-field>
+    <input matInput
+           (keyup)="applyFilter($event.target.value)"
+           placeholder="Filter">
+  </mat-form-field>
+</div>
+<div class="recipes-list-table-wrapper">
+  <recipes-list-table *ngIf="((recipesListItems | async).length > 0) && (isUserLoggedIn | async)"
+                      [recipesListItems]="recipesListItems | async"
+                      (rowClicked)="navigateToDetails($event)"
+                      (editClicked)="navigateToEdit($event)"
+                      (deleteClicked)="deleteRecipe($event)">
+  </recipes-list-table>
+</div>
