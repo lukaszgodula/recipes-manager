@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RecipesListTableComponent } from './recipes-list-table.component';
 
@@ -16,7 +18,9 @@ describe('RecipesListTableComponent', () => {
       imports: [
         MatTableModule,
         MatIconModule,
-        MatMenuModule
+        MatMenuModule,
+        MatPaginatorModule,
+        NoopAnimationsModule
       ]
     })
       .compileComponents();
