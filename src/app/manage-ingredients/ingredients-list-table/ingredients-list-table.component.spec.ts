@@ -1,4 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { IngredientsListTableComponent } from './ingredients-list-table.component';
 
@@ -8,9 +13,16 @@ describe('IngredientsListTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IngredientsListTableComponent ]
+      declarations: [IngredientsListTableComponent],
+      imports: [
+        MatTableModule,
+        MatIconModule,
+        MatMenuModule,
+        MatPaginatorModule,
+        NoopAnimationsModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
