@@ -1,10 +1,5 @@
-<recipes-list *ngIf="((recipesListItems | async).length > 0); else addSomeRecipes"></recipes-list>
+<recipes-list></recipes-list>
 <button mat-fab
         class="floating-button"
         *ngIf="!(isAppLoading | async)"
         (click)="navigateToAddRecipe()"><i class="material-icons">add</i></button>
-<ng-template #addSomeRecipes>
-  <h1 class="recipes-list-alternative-text">
-    <span>Add some recipes!</span>
-  </h1>
-</ng-template>
