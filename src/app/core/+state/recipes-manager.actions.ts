@@ -33,7 +33,8 @@ export enum RecipesManagerActionTypes {
   DeleteIngredient = '[RecipesManager] DELETE_INGREDIENT',
   IngredientDeleted = '[RecipesManager] INGREDIENT_DELETED',
   EditIngredient = '[RecipesManager] EDIT_INGREDIENT',
-  IngredientEdited = '[RecipesManager] INGREDIENT_EDITED'
+  IngredientEdited = '[RecipesManager] INGREDIENT_EDITED',
+  ThrowHttpError = '[RecipesManager] THROW_HTTP_ERROR'
 }
 
 export interface SetAuthProgress {
@@ -45,6 +46,13 @@ export interface SetAuthProgress {
 
 export interface ThrowAuthError {
   type: RecipesManagerActionTypes.ThrowAuthError;
+  payload: {
+    errorMessage: string;
+  };
+}
+
+export interface ThrowHttpError {
+  type: RecipesManagerActionTypes.ThrowHttpError;
   payload: {
     errorMessage: string;
   };
@@ -203,4 +211,5 @@ export type RecipesManagerActions =
   DeleteIngredient |
   IngredientDeleted |
   EditIngredient |
-  IngredientEdited;
+  IngredientEdited |
+  ThrowHttpError;

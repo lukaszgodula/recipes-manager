@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { dispatch } from 'rxjs/internal/observable/pairs';
 import { concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { Recipe } from 'src/app/core/models/recipe';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
@@ -21,6 +22,7 @@ import {
   RecipesManagerActionTypes,
   SaveEditedRecipe,
   ThrowAuthError,
+  ThrowHttpError,
 } from './recipes-manager.actions';
 
 @Injectable()
@@ -205,6 +207,14 @@ export class RecipesManagerEffects {
         type: RecipesManagerActionTypes.SetAuthProgress,
         payload: { authInProgress: false }
       };
+    })
+  );
+
+  @Effect({ dispatch: false })
+  throwHttpError: Observable<Action> = this.actions$.pipe(
+    ofType<ThrowHttpError>(RecipesManagerActionTypes.ThrowHttpError),
+    tap(() => {
+      this.recipesManagerService.openSnackBar('Error occured, please refresh app', 'Close', 10000);
     })
   );
 

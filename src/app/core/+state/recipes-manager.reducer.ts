@@ -28,6 +28,8 @@ export function recipesManagerReducer(state: RecipesManagerState, action: Recipe
       return { ...state, recipesList: null };
     case RecipesManagerActionTypes.ClearIngredientsList:
       return { ...state, ingredientsList: [] };
+    case RecipesManagerActionTypes.ThrowHttpError:
+      return { ...state, isAppLoading: false };
     default:
       return state;
   }
