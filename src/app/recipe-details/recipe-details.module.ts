@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
@@ -14,7 +13,6 @@ import { RecipeDetailsRoutingModule } from './recipe-details.routing.module';
   imports: [
     CommonModule,
     RecipeDetailsRoutingModule,
-    MatGridListModule,
     MatDividerModule,
     MatListModule,
     MatButtonModule,

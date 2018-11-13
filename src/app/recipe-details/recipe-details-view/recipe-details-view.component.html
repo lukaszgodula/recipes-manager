@@ -1,39 +1,35 @@
-<mat-grid-list cols="3"
-               rowHeight="3em">
-  <mat-grid-tile colspan="3"
-                 rowspan="4"
-                 *ngIf="recipeImageUrl.length > 0">
-    <img src="{{recipeImageUrl}}">
-  </mat-grid-tile>
-  <mat-grid-tile colspan="3"
-                 rowspan="1">
-    <h1>{{recipeName}}</h1>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1"
-                 rowspan="1">
-    <span>Difficulty: {{recipeDifficultyLevel}}</span>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1"
-                 rowspan="1">
-    <span>Time: {{recipeTime}}</span>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1"
-                 rowspan="1">
-    <span>Vege: {{isVege ? 'Yes' : 'No'}}</span>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2"
-                 rowspan="{{recipeIngredients.length + 2}}"
-                 class="ingredients">
-    <mat-list>
-      <h2>Ingredients:</h2>
-      <mat-list-item *ngFor="let ingredient of recipeIngredients">{{ingredient.name}} {{ ingredient.quantity}}
-        {{ingredient.unit}}</mat-list-item>
-    </mat-list>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="3"
-                 rowspan="2">
+<div class="recipe-details-view-container">
+  <div class=recipe-details-recipe-image>
+    <img src="{{recipeImageUrl}}"
+         *ngIf="recipeImageUrl.length > 0">
+    <mat-icon aria-label="Image"
+              *ngIf="recipeImageUrl.length === 0">image</mat-icon>
+  </div>
+  <div class="recipe-details-recipe-name">
+    <h1>
+      {{ recipeName }}
+    </h1>
+  </div>
+  <div class="recipe-details-recipe-difficulty">
+    <span><strong>Difficulty:</strong> {{recipeDifficultyLevel}}</span>
+  </div>
+  <div class="recipe-details-recipe-time">
+    <mat-icon aria-label="Time">access_time</mat-icon><span>{{recipeTime}} minutes</span>
+  </div>
+  <div class="recipe-details-recipe-is-vege">
+    <span><strong>Vege:</strong> {{isVege ? 'Yes' : 'No'}}</span>
+  </div>
+  <div class="recipe-details-recipe-ingredients">
+    <h2>Ingredients:</h2>
+    <ul>
+      <li *ngFor="let ingredient of recipeIngredients">
+        <strong>{{ingredient.name}}</strong> {{ ingredient.quantity}} {{ingredient.unit}}
+      </li>
+    </ul>
+  </div>
+  <div class="recipe-details-recipe-description">
     <span class="recipe-description"
           [innerHTML]="recipeDescription">
     </span>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+</div>

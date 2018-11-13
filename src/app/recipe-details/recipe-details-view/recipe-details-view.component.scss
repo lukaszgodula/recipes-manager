@@ -1,3 +1,85 @@
-.recipe-description {
-    padding: 1em;
+.recipe-details-view-container {
+    display: grid;
+    grid-template-columns: repeat(6, 16.666%);
+    grid-template-rows: auto auto 3em auto auto;
+    grid-template-areas: 
+    "recipe-image recipe-image recipe-image recipe-image recipe-image recipe-image"
+    "recipe-name recipe-name recipe-name recipe-name recipe-name recipe-name"
+    "recipe-difficulty recipe-difficulty recipe-time recipe-time is-vege is-vege"
+    "recipe-ingredients recipe-ingredients recipe-ingredients recipe-ingredients recipe-ingredients recipe-ingredients"
+    "recipe-description recipe-description recipe-description recipe-description recipe-description recipe-description";
+    justify-items: center;
+    align-items: center;
+}
+
+.recipe-details-recipe-image {
+    grid-area: recipe-image;
+    img {
+        max-height: 200px;
+        width: 100%;
+        object-fit: contain;
+    }
+    mat-icon {
+        display: none;
+    }
+}
+
+.recipe-details-recipe-name {
+    grid-area: recipe-name;
+    margin: 1em;
+}
+
+.recipe-details-recipe-difficulty {
+    grid-area: recipe-difficulty;
+}
+
+.recipe-details-recipe-time {
+    grid-area: recipe-time;
+}
+
+.recipe-details-recipe-is-vege {
+    grid-area: is-vege;
+}
+
+.recipe-details-recipe-ingredients {
+    grid-area: recipe-ingredients;
+    align-self: start;
+    justify-self: start;
+    margin: 1em;
+    ul {
+        padding-inline-start: 1em;
+    }
+}
+
+.recipe-details-recipe-description {
+    grid-area: recipe-description;
+    margin: 1em;
+}
+
+mat-icon {
+    font-size: 14px;
+    font-weight: 700;
+    height: 14px;
+    width: 14px;
+}
+
+@media (min-width: 1000px) {
+    .recipe-details-view-container {
+        display: grid;
+        grid-template-columns: repeat(6, 16.666%);
+        grid-template-rows: auto 5em auto;
+        grid-template-areas: 
+        "recipe-image recipe-name recipe-name recipe-name recipe-name recipe-name"
+        "recipe-image recipe-difficulty recipe-time recipe-time is-vege is-vege"
+        "recipe-ingredients recipe-description recipe-description recipe-description recipe-description recipe-description";
+        justify-items: center;
+        align-items: center;
+    }
+    .recipe-details-recipe-image {
+        mat-icon {
+            color: #d8d8d8;
+            display: block;
+            font-size: 50px;
+        }
+    }
 }
