@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     NavBarModule,
-    HomeModule.forRoot()
+    HomeModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [RecipesManagerEffects],
   bootstrap: [AppComponent]
