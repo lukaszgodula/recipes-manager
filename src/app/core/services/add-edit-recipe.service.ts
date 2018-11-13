@@ -45,11 +45,11 @@ export class AddEditRecipeService {
     return this.formBuilder.group({
       name: ['', Validators.required],
       cuisineType: ['', Validators.required],
-      time: '',
+      time: ['', Validators.min(0)],
       difficultyLevel: ['', Validators.required],
       category: ['', Validators.required],
       imageUrl: '',
-      portions: '',
+      portions: ['', Validators.min(0)],
       isVege: '',
       description: '',
       ingredients: [[], Validators.required]
@@ -94,11 +94,11 @@ export class AddEditRecipeService {
       id: ['', Validators.required],
       name: ['', Validators.required],
       cuisineType: ['', Validators.required],
-      time: '',
+      time: ['', Validators.min(0)],
       difficultyLevel: ['', Validators.required],
       category: ['', Validators.required],
       imageUrl: '',
-      portions: '',
+      portions: ['', Validators.min(0)],
       isVege: '',
       description: '',
       ingredients: [[], Validators.required]
