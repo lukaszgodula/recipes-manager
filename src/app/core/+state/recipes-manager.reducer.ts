@@ -14,6 +14,10 @@ export function recipesManagerReducer(state: RecipesManagerState, action: Recipe
       return { ...state, isAppLoading: true };
     case RecipesManagerActionTypes.RecipeDetailsLoaded:
       return { ...state, ...action.payload, isAppLoading: false };
+    case RecipesManagerActionTypes.AddRecipe:
+      return { ...state, isAppLoading: true };
+    case RecipesManagerActionTypes.SaveEditedRecipe:
+      return { ...state, isAppLoading: true };
     case RecipesManagerActionTypes.DeleteRecipe:
       return { ...state, isAppLoading: true };
     case RecipesManagerActionTypes.ChangeLoginStatus:
