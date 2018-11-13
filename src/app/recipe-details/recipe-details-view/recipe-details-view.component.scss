@@ -5,7 +5,7 @@
     grid-template-areas: 
     "recipe-image recipe-image recipe-image recipe-image recipe-image recipe-image"
     "recipe-name recipe-name recipe-name recipe-name recipe-name recipe-name"
-    "recipe-difficulty recipe-difficulty recipe-time recipe-time is-vege is-vege"
+    "recipe-info recipe-info recipe-info recipe-info recipe-info recipe-info"
     "recipe-ingredients recipe-ingredients recipe-ingredients recipe-ingredients recipe-ingredients recipe-ingredients"
     "recipe-description recipe-description recipe-description recipe-description recipe-description recipe-description";
     justify-items: center;
@@ -29,16 +29,15 @@
     margin: 1em;
 }
 
-.recipe-details-recipe-difficulty {
-    grid-area: recipe-difficulty;
+.recipe-details-recipe-info {
+    grid-area: recipe-info;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
-.recipe-details-recipe-time {
-    grid-area: recipe-time;
-}
-
-.recipe-details-recipe-is-vege {
-    grid-area: is-vege;
+.recipe-details-recipe-portions {
+    grid-area: recipe-portions;
 }
 
 .recipe-details-recipe-ingredients {
@@ -70,7 +69,7 @@ mat-icon {
         grid-template-rows: auto 5em auto;
         grid-template-areas: 
         "recipe-image recipe-name recipe-name recipe-name recipe-name recipe-name"
-        "recipe-image recipe-difficulty recipe-time recipe-time is-vege is-vege"
+        "recipe-image recipe-info recipe-info recipe-info recipe-info recipe-info"
         "recipe-ingredients recipe-description recipe-description recipe-description recipe-description recipe-description";
         justify-items: center;
         align-items: center;
@@ -81,5 +80,8 @@ mat-icon {
             display: block;
             font-size: 50px;
         }
+    }
+    .recipe-details-recipe-is-vege {
+        justify-self: center;
     }
 }

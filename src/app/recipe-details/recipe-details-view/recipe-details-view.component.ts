@@ -16,6 +16,7 @@ export class RecipeDetailsViewComponent implements OnInit {
   @Input() isVege: boolean;
   @Input() recipeIngredients: Ingredient[];
   @Input() recipeDescription: string;
+  @Input() portions: number;
 
   constructor() { }
 

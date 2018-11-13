@@ -10,14 +10,19 @@
       {{ recipeName }}
     </h1>
   </div>
-  <div class="recipe-details-recipe-difficulty">
-    <span><strong>Difficulty:</strong> {{recipeDifficultyLevel}}</span>
-  </div>
-  <div class="recipe-details-recipe-time">
-    <mat-icon aria-label="Time">access_time</mat-icon><span>{{recipeTime}} minutes</span>
-  </div>
-  <div class="recipe-details-recipe-is-vege">
-    <span><strong>Vege:</strong> {{isVege ? 'Yes' : 'No'}}</span>
+  <div class="recipe-details-recipe-info">
+    <div class="recipe-details-recipe-difficulty">
+      <mat-icon aria-label="Difficulty">signal_cellular_alt</mat-icon><span> {{recipeDifficultyLevel}}</span>
+    </div>
+    <div class="recipe-details-recipe-time">
+      <mat-icon aria-label="Time">access_time</mat-icon><span>{{recipeTime}} minutes</span>
+    </div>
+    <div class="recipe-details-recipe-portions">
+      <mat-icon aria-label="Portions">restaurant_menu</mat-icon> {{portions}}
+    </div>
+    <div class="recipe-details-recipe-is-vege">
+      <span><strong>Vege:</strong> {{isVege ? 'Yes' : 'No'}}</span>
+    </div>
   </div>
   <div class="recipe-details-recipe-ingredients">
     <h2>Ingredients:</h2>

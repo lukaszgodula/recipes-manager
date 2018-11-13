@@ -29,6 +29,7 @@ export class RecipeDetailsComponent extends UnsubscribingOnDestroy implements On
   public isVege: Observable<boolean>;
   public recipeIngredients: Observable<Ingredient[]>;
   public recipeDescription: Observable<string>;
+  public recipePortions: Observable<number>;
 
   constructor(private store: Store<RecipesManagerState>,
     private route: ActivatedRoute) {
@@ -40,6 +41,7 @@ export class RecipeDetailsComponent extends UnsubscribingOnDestroy implements On
     this.isVege = StoreUtil.select(this.store, FromRecipesManagerState.recipeIsVege);
     this.recipeIngredients = StoreUtil.select(this.store, FromRecipesManagerState.recipeIngredients);
     this.recipeDescription = StoreUtil.select(this.store, FromRecipesManagerState.recipeDescription);
+    this.recipePortions = StoreUtil.select(this.store, FromRecipesManagerState.recipePortions);
   }
 
   ngOnInit() {
