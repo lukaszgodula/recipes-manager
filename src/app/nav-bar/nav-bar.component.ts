@@ -17,12 +17,14 @@ import { FromRecipesManagerState } from '../core/+state/recipes-manager.selector
 export class NavBarComponent implements OnInit {
   public isInRoot: boolean;
   public isLoggedIn: Observable<boolean>;
+  public isUserOnline: Observable<boolean>;
 
   constructor(private router: Router,
     private recipesManagerService: RecipesManagerService,
     private authService: AuthService,
     private store: Store<RecipesManagerState>) {
     this.isLoggedIn = StoreUtil.select(this.store, FromRecipesManagerState.isUserLoggedIn);
+    this.isUserOnline = StoreUtil.select(this.store, FromRecipesManagerState.isUserOnline);
   }
 
   ngOnInit() {

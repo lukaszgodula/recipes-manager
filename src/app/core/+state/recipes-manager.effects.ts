@@ -4,7 +4,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { dispatch } from 'rxjs/internal/observable/pairs';
-import { concatMap, map, switchMap, tap } from 'rxjs/operators';
+import { concatMap, filter, map, switchMap, tap } from 'rxjs/operators';
 import { Recipe } from 'src/app/core/models/recipe';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
 
@@ -21,6 +21,7 @@ import {
   LoadRecipeDetails,
   RecipesManagerActionTypes,
   SaveEditedRecipe,
+  SetNetworkStatus,
   ThrowAuthError,
   ThrowHttpError,
 } from './recipes-manager.actions';
@@ -215,6 +216,15 @@ export class RecipesManagerEffects {
     ofType<ThrowHttpError>(RecipesManagerActionTypes.ThrowHttpError),
     tap(() => {
       this.recipesManagerService.openSnackBar('Error occured, please refresh app', 'Close', 10000);
+    })
+  );
+
+  @Effect({ dispatch: false })
+  offlineNotify: Observable<Action> = this.actions$.pipe(
+    ofType<SetNetworkStatus>(RecipesManagerActionTypes.SetNetworkStatus),
+    filter(v => !v.payload.isUserOnline),
+    tap(() => {
+      this.recipesManagerService.openSnackBar('You are offline! Only cached data will be available', 'Close', 5000);
     })
   );
 

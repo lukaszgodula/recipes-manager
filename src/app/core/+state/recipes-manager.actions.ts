@@ -34,7 +34,8 @@ export enum RecipesManagerActionTypes {
   IngredientDeleted = '[RecipesManager] INGREDIENT_DELETED',
   EditIngredient = '[RecipesManager] EDIT_INGREDIENT',
   IngredientEdited = '[RecipesManager] INGREDIENT_EDITED',
-  ThrowHttpError = '[RecipesManager] THROW_HTTP_ERROR'
+  ThrowHttpError = '[RecipesManager] THROW_HTTP_ERROR',
+  SetNetworkStatus = '[RecipesManager] SET_NETWORK_STATUS'
 }
 
 export interface SetAuthProgress {
@@ -174,6 +175,13 @@ export interface IngredientEdited {
   type: RecipesManagerActionTypes.IngredientEdited;
 }
 
+export interface SetNetworkStatus {
+  type: RecipesManagerActionTypes.SetNetworkStatus;
+  payload: {
+    isUserOnline: boolean;
+  };
+}
+
 export interface ClearIngredientsList {
   type: RecipesManagerActionTypes.ClearIngredientsList;
 }
@@ -212,4 +220,5 @@ export type RecipesManagerActions =
   IngredientDeleted |
   EditIngredient |
   IngredientEdited |
-  ThrowHttpError;
+  ThrowHttpError |
+  SetNetworkStatus;
