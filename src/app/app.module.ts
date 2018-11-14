@@ -4,6 +4,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -19,7 +20,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -40,12 +40,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ),
     EffectsModule.forRoot([RecipesManagerEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     CoreModule.forRoot(),
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     NavBarModule,
     HomeModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [RecipesManagerEffects],
   bootstrap: [AppComponent]

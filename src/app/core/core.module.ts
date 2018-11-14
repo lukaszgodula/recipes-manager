@@ -9,6 +9,7 @@ import { AuthInterceptor } from './http-interceptors/auth-interceprtor';
 import { RecipesRepository } from './recipes.repository';
 import { AuthService } from './services/auth.service';
 import { RecipesManagerService } from './services/recipes-manager.service';
+import { ServiceWorkerService } from './services/service-worker.service';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ export class CoreModule {
         RecipesRepository,
         AuthService,
         RecipesManagerService,
-        AuthGuard
+        AuthGuard,
+        ServiceWorkerService
       ]
     };
   }

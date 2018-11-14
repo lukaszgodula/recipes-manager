@@ -27,7 +27,8 @@ export class RecipesManagerService {
 
   constructor(private store: Store<RecipesManagerState>,
     public snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+  }
 
   public setAppLoadingFlag(isLoading: boolean) {
     this.store.dispatch<SetAppLoadingFlag>({
