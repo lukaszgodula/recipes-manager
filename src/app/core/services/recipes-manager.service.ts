@@ -56,8 +56,8 @@ export class RecipesManagerService {
     });
   }
 
-  public openSnackBar(message: string, action?: string, duration?: number): void {
-    this.snackBar.open(message, action, { duration: duration });
+  public openSnackBar(message: string, action?: string, duration?: number) {
+    return this.snackBar.open(message, action, { duration: duration });
   }
 
   public setCuisineTypesDropdownValues(): MatSelectCuisineType[] {
