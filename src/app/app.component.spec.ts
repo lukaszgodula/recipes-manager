@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ServiceWorkerService } from 'src/app/core/services/service-worker.service';
 
 import { AppComponent } from './app.component';
 
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        { provide: AuthService, useValue: () => { } }
+        { provide: AuthService, useValue: () => { } },
+        { provide: ServiceWorkerService, useValue: () => { } }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

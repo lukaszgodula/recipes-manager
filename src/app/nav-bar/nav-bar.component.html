@@ -5,12 +5,17 @@
     <mat-icon aria-label="Go back">arrow_back</mat-icon>
   </button>
   <span>Recipes Manager</span>
-  <button mat-icon-button
-          class="settings-button"
-          *ngIf="isLoggedIn | async"
-          [matMenuTriggerFor]="navbarActionMenu">
-    <mat-icon aria-label="Go back">settings</mat-icon>
-  </button>
+  <div class="navbar-icons">
+    <mat-icon aria-label="No intenet"
+              class="no-internet-icon"
+              *ngIf="!(isUserOnline | async)">signal_wifi_off</mat-icon>
+    <button mat-icon-button
+            class="settings-button"
+            *ngIf="isLoggedIn | async"
+            [matMenuTriggerFor]="navbarActionMenu">
+      <mat-icon aria-label="Go back">settings</mat-icon>
+    </button>
+  </div>
   <mat-menu #navbarActionMenu="matMenu">
     <button mat-menu-item
             (click)="navigateToManageIngredients()">

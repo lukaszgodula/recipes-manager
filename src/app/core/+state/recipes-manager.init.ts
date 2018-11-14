@@ -6,5 +6,6 @@ export const initialState: RecipesManagerState = {
     user: null,
     recipesList: [],
     recipeDetails: null,
-    ingredientsList: []
+    ingredientsList: [],
+    isUserOnline: null
 };

@@ -59,4 +59,7 @@ export class FromRecipesManagerState {
     public static readonly recipeDescription = createSelector(FromRecipesManagerState.self, state => {
         return state && state.recipeDetails && state.recipeDetails.description ? state.recipeDetails.description : '';
     });
+    public static readonly isUserOnline = createSelector(FromRecipesManagerState.self, state => {
+        return state && state.isUserOnline ? state.isUserOnline : null;
+    });
 }

@@ -34,6 +34,8 @@ export function recipesManagerReducer(state: RecipesManagerState, action: Recipe
       return { ...state, ingredientsList: [] };
     case RecipesManagerActionTypes.ThrowHttpError:
       return { ...state, isAppLoading: false };
+    case RecipesManagerActionTypes.SetNetworkStatus:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

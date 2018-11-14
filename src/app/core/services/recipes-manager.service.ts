@@ -3,13 +3,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ParamMap, RouterEvent } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { fromEvent, merge, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 import {
   LoadRecipeDetails,
   RecipesManagerActionTypes,
   SetAppLoadingFlag,
+  SetNetworkStatus,
   ThrowAuthError,
 } from 'src/app/core/+state/recipes-manager.actions';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
@@ -24,10 +25,14 @@ import { MatSelectDifficultyLevel } from './../models/mat-select-difficulty-leve
 
 @Injectable()
 export class RecipesManagerService {
+  public isUserConnected: Observable<boolean>;
 
   constructor(private store: Store<RecipesManagerState>,
     public snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+    this.createNetworkObservable();
+    this.monitorNetworkStatus();
+  }
 
   public setAppLoadingFlag(isLoading: boolean) {
     this.store.dispatch<SetAppLoadingFlag>({
@@ -55,8 +60,8 @@ export class RecipesManagerService {
     });
   }
 
-  public openSnackBar(message: string, action?: string, duration?: number): void {
-    this.snackBar.open(message, action, { duration: duration });
+  public openSnackBar(message: string, action?: string, duration?: number) {
+    return this.snackBar.open(message, action, { duration: duration });
   }
 
   public setCuisineTypesDropdownValues(): MatSelectCuisineType[] {
@@ -155,5 +160,27 @@ export class RecipesManagerService {
   public confirmExit(message?: string): Observable<boolean> {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: { message: message || 'Are you sure?' } });
     return dialogRef.afterClosed().pipe(switchMap((data: boolean) => of(data)));
+  }
+
+  private createNetworkObservable() {
+    this.isUserConnected = merge(
+      of(navigator.onLine),
+      fromEvent(window, 'online')
+        .pipe(
+          map(() => true)),
+      fromEvent(window, 'offline')
+        .pipe(map(() => false)));
+  }
+
+  private monitorNetworkStatus(): void {
+    this.isUserConnected
+      .subscribe(isOnline => {
+        this.store.dispatch<SetNetworkStatus>({
+          type: RecipesManagerActionTypes.SetNetworkStatus,
+          payload: {
+            isUserOnline: isOnline
+          }
+        });
+      });
   }
 }

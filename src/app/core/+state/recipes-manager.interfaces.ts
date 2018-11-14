@@ -11,4 +11,5 @@ export interface RecipesManagerState {
   readonly recipesList: RecipesListItem[];
   readonly recipeDetails: Recipe;
   readonly ingredientsList: IngredientListItem[];
+  readonly isUserOnline: boolean;
 }

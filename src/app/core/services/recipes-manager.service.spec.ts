@@ -112,7 +112,7 @@ describe('RecipesManagerService', () => {
     inject([RecipesManagerService, MatSnackBar],
       (recipesManagerService: RecipesManagerService, snackBar: MatSnackBar) => {
         spyOn(recipesManagerService.snackBar, 'open').and.callThrough();
-        recipesManagerService.openSnackBar('message');
+        recipesManagerService.openSnackBar('message', 'close');
         expect(snackBar.open).toHaveBeenCalled();
       }));
 });
