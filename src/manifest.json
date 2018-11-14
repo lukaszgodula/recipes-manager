@@ -1,7 +1,7 @@
 {
-  "name": "recipes-manager",
-  "short_name": "recipes-manager",
-  "theme_color": "#1976d2",
+  "name": "Recipes Manager",
+  "short_name": "Recipes",
+  "theme_color": "#3f51b5",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
