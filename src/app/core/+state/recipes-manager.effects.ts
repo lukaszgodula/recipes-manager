@@ -135,6 +135,9 @@ export class RecipesManagerEffects {
   @Effect()
   ingredientAdded: Observable<Action> = this.actions$.pipe(
     ofType<IngredientAdded>(RecipesManagerActionTypes.IngredientAdded),
+    tap(() => {
+      this.recipesManagerService.openSnackBar('Ingredient added!', 'Close', 1000);
+    }),
     map(() => {
       return {
         type: RecipesManagerActionTypes.LoadIngredients
