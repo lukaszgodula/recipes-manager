@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Store } from '@ngrx/store';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, filter, mergeMap, take } from 'rxjs/operators';
 
 import { RecipesManagerActionTypes, ThrowHttpError } from '../+state/recipes-manager.actions';
@@ -21,14 +21,11 @@ export class AuthInterceptor implements HttpInterceptor {
       filter(token => token !== null),
       take(1),
       mergeMap((token: string) => {
-        if (token) {
-          request = request.clone({ setHeaders: { Authorization: `${token}` } });
-        }
+        request = request.clone({ setHeaders: { Authorization: `${token}` } });
         return next.handle(request)
-          .pipe(catchError(response => {
-            if (response instanceof HttpErrorResponse) {
-              return this.handleResponseError(response);
-            }
+          .pipe(catchError((error) => {
+            this.handleResponseError(error);
+            return of(error);
           }));
       }));
   }
@@ -42,7 +39,6 @@ export class AuthInterceptor implements HttpInterceptor {
       console.error(`Backend returned code ${response.status}, ` +
         `body was: ${response.error}`);
     }
-    return throwError('Something bad happened; please refresh app.');
   }
 
   private dispatchError(response: HttpErrorResponse) {
