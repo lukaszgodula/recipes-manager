@@ -14,7 +14,9 @@ import { DifficultyLevel } from 'src/app/core/enums/difficulty-level.enum';
 import { Ingredient } from 'src/app/core/models/ingredient';
 import { StoreUtil } from 'src/app/core/utils/store.util';
 
+import { ShoppingListItemRequest } from '../core/models/shopping-list-item-request';
 import { UnsubscribingOnDestroy } from '../core/utils/unsubscribing-on-destroy';
+import { ShoppingListFacade } from '../shopping-list/+state/shopping-list.facade';
 
 @Component({
   selector: 'recipe-details',
@@ -32,6 +34,7 @@ export class RecipeDetailsComponent extends UnsubscribingOnDestroy implements On
   public recipePortions: Observable<number>;
 
   constructor(private store: Store<RecipesManagerState>,
+    private shoppingListFacade: ShoppingListFacade,
     private route: ActivatedRoute) {
     super();
     this.recipeName = StoreUtil.select(this.store, FromRecipesManagerState.recipeName);
@@ -62,6 +65,16 @@ export class RecipeDetailsComponent extends UnsubscribingOnDestroy implements On
       type: RecipesManagerActionTypes.ClearRecipeDetails
     });
     super.ngOnDestroy();
+  }
+
+  public addToShoppingList(ingredient: Ingredient): void {
+    const addItemToShoppingListRequest: ShoppingListItemRequest = {
+      ingredientId: ingredient.id,
+      ingredientName: ingredient.name,
+      ingredientUnit: ingredient.unit,
+      ingredientQuantity: ingredient.quantity
+    };
+    this.shoppingListFacade.addItemToShoppingList(addItemToShoppingListRequest);
   }
 
 }

@@ -5,4 +5,5 @@
                      [isVege]="isVege | async"
                      [recipeIngredients]="recipeIngredients | async"
                      [recipeDescription]="recipeDescription | async"
-                     [portions]="recipePortions | async"></recipe-details-view>
+                     [portions]="recipePortions | async"
+                     (addToShoppingListClicked)="addToShoppingList($event)"></recipe-details-view>

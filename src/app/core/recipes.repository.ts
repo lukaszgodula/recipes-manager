@@ -64,6 +64,6 @@ export class RecipesRepository {
   }
 
   public deleteShoppingListItem(itemId: number): Observable<null> {
-    return this.http.delete<null>(`${environment.apiUrl}/${itemId}`);
+    return this.http.delete<null>(`${environment.apiUrl}shopping-list-items/${itemId}`);
   }
 }

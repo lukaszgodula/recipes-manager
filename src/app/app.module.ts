@@ -20,6 +20,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { ShoppingListEffects } from './shopping-list/+state/shopping-list.effects';
+import {
+  SHOPPINGLIST_FEATURE_KEY,
+  shoppingListInitialState,
+  shoppingListReducer,
+} from './shopping-list/+state/shopping-list.reducer';
 
 @NgModule({
   declarations: [
@@ -46,6 +52,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MatProgressSpinnerModule,
     NavBarModule,
     HomeModule.forRoot(),
+    StoreModule.forFeature(SHOPPINGLIST_FEATURE_KEY, shoppingListReducer, { initialState: shoppingListInitialState }),
+    EffectsModule.forFeature([ShoppingListEffects])
   ],
   providers: [RecipesManagerEffects],
   bootstrap: [AppComponent]

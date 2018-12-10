@@ -4,6 +4,7 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { ConfirmationDialogModule } from '../confirmation-dialog/confirmation-dialog.module';
+import { ShoppingListFacade } from '../shopping-list/+state/shopping-list.facade';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './http-interceptors/auth-interceprtor';
 import { RecipesRepository } from './recipes.repository';
@@ -38,7 +39,8 @@ export class CoreModule {
         AuthService,
         RecipesManagerService,
         AuthGuard,
-        ServiceWorkerService
+        ServiceWorkerService,
+        ShoppingListFacade,
       ]
     };
   }

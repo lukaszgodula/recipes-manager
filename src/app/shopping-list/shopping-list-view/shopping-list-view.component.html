@@ -1,0 +1,19 @@
+<h3 *ngIf="shoppingList?.length > 0; else emptyList">
+  Shopping list:
+</h3>
+<ul>
+  <li *ngFor="let item of shoppingList">
+    <span> {{item.ingredientName}} {{item.quantity}} {{item.unit}}</span>
+    <button mat-icon-button
+            color="primary"
+            class="done-button"
+            (click)="onDoneClicked(item.id)">
+      <mat-icon aria-label="Shopping list">done</mat-icon>
+    </button>
+  </li>
+</ul>
+<ng-template #emptyList>
+  <h3>
+    Shopping list is empty!
+  </h3>
+</ng-template>

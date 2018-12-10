@@ -8,16 +8,18 @@ export interface ShoppingListState {
   shoppingListItems: ShoppingListItem[];
 }
 
-export const initialState: ShoppingListState = {
+export const shoppingListInitialState: ShoppingListState = {
   shoppingListItems: []
 };
 
 export function shoppingListReducer(
-  state: ShoppingListState = initialState,
+  state: ShoppingListState = shoppingListInitialState,
   action: ShoppingListAction): ShoppingListState {
   switch (action.type) {
     case ShoppingListActionTypes.ShoppingListItemsLoaded:
       return { ...state, ...action.payload };
+    case ShoppingListActionTypes.ClearShoppingListState:
+      return shoppingListInitialState;
     default:
       return state;
   }

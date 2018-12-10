@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { concatMap, switchMap } from 'rxjs/operators';
 import { ShoppingListItem } from 'src/app/core/models/shopping-list-item';
 import { RecipesRepository } from 'src/app/core/recipes.repository';
+import { RecipesManagerService } from 'src/app/core/services/recipes-manager.service';
 
 import { AddItemToShoppingList, DeleteShoppingListItem, ShoppingListActionTypes } from './shopping-list.actions';
 
@@ -34,6 +35,7 @@ export class ShoppingListEffects {
     switchMap((action: AddItemToShoppingList) => {
       return this.recipesRepository.addShoppingListItem(action.payload.shoppingListItem).pipe(
         concatMap((shoppingListItem: ShoppingListItem) => {
+          this.recipesManagerService.openSnackBar('Added to list!', 'Close', 1000);
           return [
             {
               type: ShoppingListActionTypes.ItemAddedToShoppingList,
@@ -54,6 +56,9 @@ export class ShoppingListEffects {
           return [
             {
               type: ShoppingListActionTypes.ShoppingListItemDeleted
+            },
+            {
+              type: ShoppingListActionTypes.LoadShoppingListItems
             }
           ];
         })
@@ -63,6 +68,7 @@ export class ShoppingListEffects {
 
   constructor(
     private actions: Actions,
-    private recipesRepository: RecipesRepository
+    private recipesRepository: RecipesRepository,
+    private recipesManagerService: RecipesManagerService
   ) { }
 }

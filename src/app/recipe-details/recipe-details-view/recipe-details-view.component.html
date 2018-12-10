@@ -29,6 +29,12 @@
     <ul>
       <li *ngFor="let ingredient of recipeIngredients">
         <strong>{{ingredient.name}}</strong> {{ ingredient.quantity}} {{ingredient.unit}}
+        <button mat-icon-button
+                color="accent"
+                class="recipe-details-add-to-list"
+                (click)="onAddToShoppingListClicked(ingredient)">
+          <mat-icon aria-label="Time">add_shopping_cart</mat-icon>
+        </button>
       </li>
     </ul>
   </div>

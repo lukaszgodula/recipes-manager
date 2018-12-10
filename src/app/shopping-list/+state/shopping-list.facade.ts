@@ -4,6 +4,7 @@ import { ShoppingListItemRequest } from 'src/app/core/models/shopping-list-item-
 
 import {
   AddItemToShoppingList,
+  ClearShoppingListState,
   DeleteShoppingListItem,
   LoadShoppingListItems,
   ShoppingListActionTypes,
@@ -39,6 +40,12 @@ export class ShoppingListFacade {
       payload: {
         id: itemId
       }
+    });
+  }
+
+  public clearShoppingListState(): void {
+    this.store.dispatch<ClearShoppingListState>({
+      type: ShoppingListActionTypes.ClearShoppingListState
     });
   }
 

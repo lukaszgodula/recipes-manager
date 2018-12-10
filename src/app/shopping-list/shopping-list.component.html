@@ -1,3 +1,4 @@
-<p>
-  shopping-list works!
-</p>
+<div class="shopping-list-view-wrapper">
+  <shopping-list-view [shoppingList]="shoppingList | async"
+                      (doneClicked)="deleteShoppingListItem($event)"></shopping-list-view>
+</div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DifficultyLevel } from 'src/app/core/enums/difficulty-level.enum';
 import { Ingredient } from 'src/app/core/models/ingredient';
 
@@ -18,9 +18,15 @@ export class RecipeDetailsViewComponent implements OnInit {
   @Input() recipeDescription: string;
   @Input() portions: number;
 
+  @Output() addToShoppingListClicked: EventEmitter<Ingredient> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public onAddToShoppingListClicked(ingredient): void {
+    this.addToShoppingListClicked.emit(ingredient);
   }
 
 
