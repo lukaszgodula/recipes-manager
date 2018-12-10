@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ShoppingListViewComponent } from './shopping-list-view.component';
 
@@ -8,9 +9,12 @@ describe('ShoppingListViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShoppingListViewComponent ]
+      declarations: [ShoppingListViewComponent],
+      imports: [
+        MatIconModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

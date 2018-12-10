@@ -1,5 +1,8 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ShoppingListFacadeMock } from 'src/testing/shopping-list-facade.mock';
 
+import { ShoppingListFacade } from './+state/shopping-list.facade';
 import { ShoppingListComponent } from './shopping-list.component';
 
 describe('ShoppingListComponent', () => {
@@ -8,9 +11,13 @@ describe('ShoppingListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShoppingListComponent ]
+      declarations: [ShoppingListComponent],
+      providers: [
+        { provide: ShoppingListFacade, useClass: ShoppingListFacadeMock }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
