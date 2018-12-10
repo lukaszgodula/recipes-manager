@@ -44,6 +44,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/manage-ingredients']);
   }
 
+  public navigateToShoppingList(): void {
+    this.router.navigate(['/shopping-list']);
+  }
+
   private setRouteFlags(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

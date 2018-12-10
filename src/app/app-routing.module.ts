@@ -29,6 +29,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: './manage-ingredients/manage-ingredients.module#ManageIngredientsModule'
   },
+  {
+    path: 'shopping-list',
+    canActivate: [AuthGuard],
+    loadChildren: './shopping-list/shopping-list.module#ShoppingListModule'
+  },
   // { path: 'not-found', component: PageNotFoundComponent },
   // { path: '**', redirectTo: '/not-found' },
 ];

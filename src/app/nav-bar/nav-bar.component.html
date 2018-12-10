@@ -10,6 +10,12 @@
               class="no-internet-icon"
               *ngIf="!(isUserOnline | async)">signal_wifi_off</mat-icon>
     <button mat-icon-button
+            class="shopping-button"
+            *ngIf="isLoggedIn | async"
+            (click)="navigateToShoppingList()">
+      <mat-icon aria-label="Shopping list">shopping_cart</mat-icon>
+    </button>
+    <button mat-icon-button
             class="settings-button"
             *ngIf="isLoggedIn | async"
             [matMenuTriggerFor]="navbarActionMenu">

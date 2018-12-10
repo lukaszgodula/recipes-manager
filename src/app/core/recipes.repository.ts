@@ -11,6 +11,8 @@ import { Ingredient } from './models/ingredient';
 import { IngredientListItem } from './models/ingredient-list-item';
 import { Recipe } from './models/recipe';
 import { RecipesListItem } from './models/recipes-list';
+import { ShoppingListItem } from './models/shopping-list-item';
+import { ShoppingListItemRequest } from './models/shopping-list-item-request';
 
 @Injectable()
 export class RecipesRepository {
@@ -51,5 +53,17 @@ export class RecipesRepository {
 
   public editIngredient(ingredient: EditIngredientRequest): Observable<null> {
     return this.http.put<null>(`${environment.apiUrl}ingredients/edit`, ingredient);
+  }
+
+  public getShoppingListItems(): Observable<ShoppingListItem[]> {
+    return this.http.get<ShoppingListItem[]>(`${environment.apiUrl}shopping-list-items`);
+  }
+
+  public addShoppingListItem(item: ShoppingListItemRequest): Observable<ShoppingListItem> {
+    return this.http.post<ShoppingListItem>(`${environment.apiUrl}shopping-list-items/add`, item);
+  }
+
+  public deleteShoppingListItem(itemId: number): Observable<null> {
+    return this.http.delete<null>(`${environment.apiUrl}/${itemId}`);
   }
 }

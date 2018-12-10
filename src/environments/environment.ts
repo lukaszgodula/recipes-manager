@@ -12,7 +12,7 @@ export const environment = {
     storageBucket: 'recipes-manager-1376f.appspot.com',
     messagingSenderId: '925464073767'
   },
-  apiUrl: 'https://recipes-manager-backend.herokuapp.com/'
+  apiUrl: 'http://localhost:3000/'
 };
 
 /*
