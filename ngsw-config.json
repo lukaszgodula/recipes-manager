@@ -35,7 +35,8 @@
       "name": "api",
       "urls": [
         "https://recipes-manager-backend-prod.herokuapp.com/recipes",
-        "https://recipes-manager-backend-prod.herokuapp.com/ingredients"
+        "https://recipes-manager-backend-prod.herokuapp.com/ingredients",
+        "https://recipes-manager-backend-prod.herokuapp.com/shopping-list-items"
       ],
       "cacheConfig": {
         "strategy": "freshness",
