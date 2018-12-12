@@ -46,8 +46,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   private buildForm(): void {
     this.addItemForm = this.formBuilder.group({
       itemName: ['', Validators.required],
-      itemQuantity: [''],
-      itemUnit: ['']
+      itemQuantity: [null],
+      itemUnit: [null]
     });
   }
 
