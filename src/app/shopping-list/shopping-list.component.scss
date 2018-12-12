@@ -1,3 +1,19 @@
 .shopping-list-view-wrapper {
   padding: 1rem;
 }
+
+.add-shopping-list-item-wrapper {
+  padding: 1rem;
+}
+
+mat-form-field { 
+  margin: 0.5rem;
+}
+
+.form-name {
+  width: 8rem;
+}
+
+.form-quantity, .form-unit {
+  width: 5rem;
+}

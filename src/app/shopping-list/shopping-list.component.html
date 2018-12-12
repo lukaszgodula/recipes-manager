@@ -2,3 +2,29 @@
   <shopping-list-view [shoppingList]="shoppingList | async"
                       (doneClicked)="deleteShoppingListItem($event)"></shopping-list-view>
 </div>
+<div class="add-shopping-list-item-wrapper">
+  <form class="shopping-list-item-form"
+        [formGroup]="addItemForm"
+        (ngSubmit)="addItemToList()">
+    <mat-form-field class="form-name">
+      <input matInput
+             placeholder="Item name"
+             formControlName="itemName">
+    </mat-form-field>
+    <mat-form-field class="form-quantity">
+      <input matInput
+             type="number"
+             placeholder="Quantity"
+             formControlName="itemQuantity">
+    </mat-form-field>
+    <mat-form-field class="form-unit">
+      <input matInput
+             placeholder="Unit"
+             formControlName="itemUnit">
+    </mat-form-field>
+    <button mat-button
+            type="submit"
+            color="primary"
+            [disabled]="!addItemForm.valid">Add to list</button>
+  </form>
+</div>

@@ -16,6 +16,7 @@ import { shoppingListQuery } from './shopping-list.selectors';
 export class ShoppingListFacade {
 
   shoppingListItems = this.store.pipe(select(shoppingListQuery.getShoppingList));
+  shoppingListLoading = this.store.pipe(select(shoppingListQuery.getShoppingListLoading));
 
   constructor(private store: Store<ShoppingListState>) { }
 

@@ -40,6 +40,9 @@ export class ShoppingListEffects {
             {
               type: ShoppingListActionTypes.ItemAddedToShoppingList,
               payload: { shoppingListItem: shoppingListItem }
+            },
+            {
+              type: ShoppingListActionTypes.LoadShoppingListItems
             }
           ];
         })

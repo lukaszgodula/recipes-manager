@@ -1,4 +1,4 @@
-<div *ngIf="isAppLoading | async"
+<div *ngIf="(isAppLoading | async) || (isShoppingListLoading | async)"
      class="spinner-overlay">
   <mat-spinner></mat-spinner>
 </div>

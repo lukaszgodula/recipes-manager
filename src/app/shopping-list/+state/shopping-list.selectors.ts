@@ -8,6 +8,11 @@ const getShoppingList = createSelector(getShoppingListState, state => {
   return state && state.shoppingListItems ? state.shoppingListItems : [];
 });
 
+const getShoppingListLoading = createSelector(getShoppingListState, state => {
+  return state && state.shoppingListLoading ? state.shoppingListLoading : false;
+});
+
 export const shoppingListQuery = {
-  getShoppingList
+  getShoppingList,
+  getShoppingListLoading
 };

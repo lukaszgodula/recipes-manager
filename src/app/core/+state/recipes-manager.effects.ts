@@ -9,10 +9,12 @@ import { Recipe } from 'src/app/core/models/recipe';
 import { RecipesListItem } from 'src/app/core/models/recipes-list';
 
 import { IngredientListItem } from '../models/ingredient-list-item';
+import { ShoppingListItem } from '../models/shopping-list-item';
 import { RecipesRepository } from '../recipes.repository';
 import { RecipesManagerService } from '../services/recipes-manager.service';
 import {
   AddIngredient,
+  AddItemToShoppingList,
   AddRecipe,
   DeleteIngredient,
   DeleteRecipe,
@@ -193,6 +195,24 @@ export class RecipesManagerEffects {
           return [
             {
               type: RecipesManagerActionTypes.EditedRecipeSaved,
+            }
+          ];
+        })
+      );
+    })
+  );
+
+  @Effect()
+  addItemToShoppingList: Observable<Action> = this.actions$.pipe(
+    ofType(RecipesManagerActionTypes.AddItemToShoppingList),
+    switchMap((action: AddItemToShoppingList) => {
+      return this.recipesRepository.addShoppingListItem(action.payload.shoppingListItem).pipe(
+        concatMap((shoppingListItem: ShoppingListItem) => {
+          this.recipesManagerService.openSnackBar('Added to list!', 'Close', 1000);
+          return [
+            {
+              type: RecipesManagerActionTypes.ItemAddedToShoppingList,
+              payload: { shoppingListItem: shoppingListItem }
             }
           ];
         })

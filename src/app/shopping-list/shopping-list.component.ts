@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { ShoppingListItem } from '../core/models/shopping-list-item';
+import { ShoppingListItemRequest } from '../core/models/shopping-list-item-request';
 import { ShoppingListFacade } from './+state/shopping-list.facade';
 
 @Component({
@@ -12,7 +14,11 @@ import { ShoppingListFacade } from './+state/shopping-list.facade';
 export class ShoppingListComponent implements OnInit, OnDestroy {
   public shoppingList: Observable<ShoppingListItem[]>;
 
-  constructor(private shoppingListFacade: ShoppingListFacade) {
+  public addItemForm: FormGroup;
+
+  constructor(private shoppingListFacade: ShoppingListFacade,
+    private formBuilder: FormBuilder) {
+    this.buildForm();
     this.shoppingList = this.shoppingListFacade.shoppingListItems;
   }
 
@@ -26,6 +32,23 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   public deleteShoppingListItem(id: number): void {
     this.shoppingListFacade.deleteShoppingListItem(id);
+  }
+
+  public addItemToList(): void {
+    const shoppingListItemRequest: ShoppingListItemRequest = {
+      ingredientName: this.addItemForm.value.itemName,
+      ingredientQuantity: this.addItemForm.value.itemQuantity,
+      ingredientUnit: this.addItemForm.value.itemUnit
+    };
+    this.shoppingListFacade.addItemToShoppingList(shoppingListItemRequest);
+  }
+
+  private buildForm(): void {
+    this.addItemForm = this.formBuilder.group({
+      itemName: ['', Validators.required],
+      itemQuantity: [''],
+      itemUnit: ['']
+    });
   }
 
 }

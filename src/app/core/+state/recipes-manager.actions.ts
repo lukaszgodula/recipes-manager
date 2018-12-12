@@ -4,6 +4,8 @@ import { RecipesManagerUser } from 'src/app/core/models/recipes-manager-user';
 
 import { EditIngredientRequest } from '../models/edit-ingredient-request';
 import { IngredientListItem } from '../models/ingredient-list-item';
+import { ShoppingListItem } from '../models/shopping-list-item';
+import { ShoppingListItemRequest } from '../models/shopping-list-item-request';
 import { AddIngredientRequest } from './../models/add-ingredient-request';
 import { AddRecipeRequest } from './../models/add-recipe-request';
 import { EditRecipeRequest } from './../models/edit-recipe-request';
@@ -35,7 +37,9 @@ export enum RecipesManagerActionTypes {
   EditIngredient = '[RecipesManager] EDIT_INGREDIENT',
   IngredientEdited = '[RecipesManager] INGREDIENT_EDITED',
   ThrowHttpError = '[RecipesManager] THROW_HTTP_ERROR',
-  SetNetworkStatus = '[RecipesManager] SET_NETWORK_STATUS'
+  SetNetworkStatus = '[RecipesManager] SET_NETWORK_STATUS',
+  AddItemToShoppingList = '[RecipesManager] ADD_ITEM_TO_SHOPPING_LIST',
+  ItemAddedToShoppingList = '[RecipesManager] ITEM_ADDED_TO_SHOPPING_LIST',
 }
 
 export interface SetAuthProgress {
@@ -182,6 +186,20 @@ export interface SetNetworkStatus {
   };
 }
 
+export interface AddItemToShoppingList {
+  type: RecipesManagerActionTypes.AddItemToShoppingList;
+  payload: {
+    shoppingListItem: ShoppingListItemRequest
+  };
+}
+
+export interface ItemAddedToShoppingList {
+  type: RecipesManagerActionTypes.ItemAddedToShoppingList;
+  payload: {
+    shoppingListItem: ShoppingListItem
+  };
+}
+
 export interface ClearIngredientsList {
   type: RecipesManagerActionTypes.ClearIngredientsList;
 }
@@ -221,4 +239,6 @@ export type RecipesManagerActions =
   EditIngredient |
   IngredientEdited |
   ThrowHttpError |
-  SetNetworkStatus;
+  SetNetworkStatus |
+  AddItemToShoppingList |
+  ItemAddedToShoppingList;
