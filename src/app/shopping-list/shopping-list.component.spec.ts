@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ShoppingListFacadeMock } from 'src/testing/shopping-list-facade.mock';
 
 import { ShoppingListFacade } from './+state/shopping-list.facade';
@@ -11,6 +12,9 @@ describe('ShoppingListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        ReactiveFormsModule
+      ],
       declarations: [ShoppingListComponent],
       providers: [
         { provide: ShoppingListFacade, useClass: ShoppingListFacadeMock }

@@ -3,7 +3,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Store, StoreModule } from '@ngrx/store';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
+import { ShoppingListFacadeMock } from 'src/testing/shopping-list-facade.mock';
 
+import { ShoppingListFacade } from '../shopping-list/+state/shopping-list.facade';
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 
 describe('LoadingSpinnerComponent', () => {
@@ -19,6 +21,9 @@ describe('LoadingSpinnerComponent', () => {
         StoreModule.forRoot({
           ...recipesManagerReducer
         })
+      ],
+      providers: [
+        { provide: ShoppingListFacade, useClass: ShoppingListFacadeMock }
       ]
     })
       .compileComponents();

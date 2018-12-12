@@ -5,10 +5,8 @@ import { Store, StoreModule } from '@ngrx/store';
 import { RecipesManagerState } from 'src/app/core/+state/recipes-manager.interfaces';
 import { recipesManagerReducer } from 'src/app/core/+state/recipes-manager.reducer';
 import { ActivatedRouteStub } from 'src/testing/activated-route-stub';
-import { ShoppingListFacadeMock } from 'src/testing/shopping-list-facade.mock';
 
 import { RecipesManagerActionTypes } from '../core/+state/recipes-manager.actions';
-import { ShoppingListFacade } from '../shopping-list/+state/shopping-list.facade';
 import { RecipeDetailsComponent } from './recipe-details.component';
 
 describe('RecipeDetailsComponent', () => {
@@ -33,8 +31,7 @@ describe('RecipeDetailsComponent', () => {
           provide: Router,
           useValue: () => { }
         },
-        { provide: ActivatedRoute, useValue: activatedRoute },
-        { provide: ShoppingListFacade, useClass: ShoppingListFacadeMock }
+        { provide: ActivatedRoute, useValue: activatedRoute }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
