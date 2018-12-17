@@ -41,6 +41,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       ingredientUnit: this.addItemForm.value.itemUnit
     };
     this.shoppingListFacade.addItemToShoppingList(shoppingListItemRequest);
+    this.addItemForm.reset();
   }
 
   private buildForm(): void {
